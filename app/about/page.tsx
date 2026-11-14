@@ -14,8 +14,6 @@ export default function About() {
           <div className="t">
             <p>Hi, I&rsquo;m Jay, an engineer and AI product builder.</p>
             <p>{site.intro}</p>
-            <p className="mute">Write the rest in your own voice: how you got here, what pulled you toward building things, what you&rsquo;re working out right now. <span className="ph">Placeholder</span></p>
-            <p>{site.openTo}</p>
           </div>
         </div>
 
@@ -25,11 +23,11 @@ export default function About() {
             {tl.entries.map((e) => (
               <li key={e.org}>
                 <span className="when">{e.period}</span>
-                <span>{e.org}{e.placeholder && <span className="ph">Placeholder</span>}<span className="sub">{e.role}</span></span>
+                <span>{e.org}{e.placeholder && <span className="ph">Placeholder</span>}<span className="sub">{e.role}</span>{e.summary && <span className="sub" style={{ marginTop: ".3rem" }}>{e.summary}</span>}</span>
               </li>
             ))}
           </ol>
-          <p className="mute sans" style={{ marginTop: "1rem", fontSize: ".8rem" }}>{tl.note}</p>
+          {tl.note && <p className="mute sans" style={{ marginTop: "1rem", fontSize: ".8rem" }}>{tl.note}</p>}
         </section>
 
         <section className="section" aria-labelledby="lens"><h2 className="sh" id="lens">Through my lens</h2></section>

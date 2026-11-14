@@ -1,9 +1,47 @@
 {
-  "note": "Order and dates are PLACEHOLDERS. Edit this file; nothing here is verified except the organisation names.",
+  "note": "",
   "entries": [
-    { "org": "Cornell", "role": "MBA candidate", "period": "Dates to add", "summary": "Business school as a workshop for the other half of building: strategy, markets, and how organisations actually decide.", "kind": "study", "placeholder": true },
-    { "org": "UnitedHealth Group", "role": "Role to add", "period": "Dates to add", "summary": "Placeholder. Describe the problem space and your contribution, in terms that are safe to share publicly.", "kind": "work", "placeholder": true },
-    { "org": "The Math Company", "role": "Role to add", "period": "Dates to add", "summary": "Placeholder. Describe the product, the problem and what you owned.", "kind": "work", "placeholder": true },
-    { "org": "Tata Consultancy Services", "role": "Role to add", "period": "Dates to add", "summary": "Placeholder. Describe the engineering work and what it taught you.", "kind": "work", "placeholder": true }
+    {
+      "org": "Cornell",
+      "role": "MBA",
+      "period": "Education",
+      "summary": "Business school as a workshop for the other half of building: strategy, markets, and how organisations decide.",
+      "kind": "study"
+    },
+    {
+      "org": "Healthee",
+      "role": "Product & Growth Strategy MBA Intern",
+      "period": "Jun 2026 \u2013 Aug 2026",
+      "summary": "Product and growth strategy for a B2B healthcare solution, from customer research to a live pilot.",
+      "kind": "work"
+    },
+    {
+      "org": "UnitedHealth Group",
+      "role": "Product Manager, AI/ML",
+      "period": "Oct 2024 \u2013 Jul 2025",
+      "summary": "Led an LLM-powered insurance appeals platform from zero to production, across legal, operations, engineering and AI governance.",
+      "kind": "work"
+    },
+    {
+      "org": "Mathco",
+      "role": "ML Engineer",
+      "period": "Jan 2024 \u2013 Sep 2024",
+      "summary": "Built and productionized customer segmentation and incentive-sensitivity models, and ran the A/B tests behind promotion decisions.",
+      "kind": "work"
+    },
+    {
+      "org": "Tata Group",
+      "role": "Data Scientist",
+      "period": "Feb 2021 \u2013 Dec 2023",
+      "summary": "Led a small team building a national-scale iris recognition platform and the deep learning models behind it.",
+      "kind": "work"
+    },
+    {
+      "org": "Dayananda Sagar College of Engineering",
+      "role": "B.Tech, Electrical & Electronics",
+      "period": "Education",
+      "summary": "",
+      "kind": "study"
+    }
   ]
 }
