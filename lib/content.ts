@@ -6,7 +6,7 @@ const ROOT = path.join(process.cwd(), "content");
 
 export type Project = {
   slug: string; title: string; summary: string; year: string; role: string;
-  tags: string[]; layers: string[]; order: number; placeholder: boolean; image: string; body: string;
+  tags: string[]; layers: string[]; order: number; placeholder: boolean; image: string; visual: string; body: string;
 };
 export type Article = {
   slug: string; title: string; summary: string; date: string; tags: string[];
@@ -36,7 +36,7 @@ export function getProjects(): Project[] {
   return mdxFiles("projects").map(({ data, content }) => ({
     slug: data.slug, title: data.title, summary: data.summary, year: String(data.year),
     role: data.role, tags: data.tags ?? [], layers: data.layers ?? [], order: data.order ?? 99,
-    placeholder: !!data.placeholder, image: data.image ?? "", body: content,
+    placeholder: !!data.placeholder, image: data.image ?? "", visual: data.visual ?? "", body: content,
   })).sort((a, b) => a.order - b.order);
 }
 export const getProject = (slug: string) => getProjects().find((p) => p.slug === slug);
