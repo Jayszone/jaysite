@@ -12,7 +12,7 @@
   "email": "hello@example.com",
   "emailIsPlaceholder": true,
   "timezone": "America/New_York",
-  "portrait": "",
+  "portrait": "/portrait.jpg",
   "links": [
     {
       "label": "LinkedIn",

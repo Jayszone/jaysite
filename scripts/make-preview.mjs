@@ -44,6 +44,7 @@ for (const rel of pages) {
     const target = p === "/" ? "index.html" : p.replace(/^\//, "").replace(/\/?$/, "/") + "index.html";
     return `href="${up}${target}${hash ? "#" + hash : ""}"`;
   });
+  body = body.replace(/src="(\/[^"\/][^"]*)"/g, (m, h) => h.startsWith("/_next") ? m : `src="${up}${h.slice(1)}"`);
   const inner = `<title>${title}</title>\n${fonts}\n<style>${css}\n${headCss}</style>\n${body}\n${shim}`;
   const out = path.join(DEST, rel);
   fs.mkdirSync(path.dirname(out), { recursive: true });
@@ -51,4 +52,5 @@ for (const rel of pages) {
   fs.writeFileSync(out, rel === "index.html" ? inner
     : `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">${inner.replace("<body", "<body")}`.replace(`${fonts}\n<style>${css}\n${headCss}</style>\n`, `${fonts}\n<style>${css}\n${headCss}</style>\n</head><body>\n`) + "</body></html>");
 }
+for (const f of fs.existsSync("public") ? fs.readdirSync("public") : []) fs.copyFileSync(path.join("public", f), path.join(DEST, f));
 console.log(pages.length + " pages →", DEST);
