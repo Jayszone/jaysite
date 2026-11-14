@@ -25,7 +25,7 @@ export default function Footer({ name, timezone, place }: { name: string; timezo
   return (
     <footer className="ftr">
       <div className="col ftr-in">
-        <p>© {new Date().getFullYear()} {name}</p>
+        <div><p>© {new Date().getFullYear()} {name}</p><p className="hint sans">Tip: click any empty space to change the colours.</p></div>
         <p className="r mute" aria-live="off" data-tz={timezone} data-place={place}>{line}</p>
       </div>
     </footer>

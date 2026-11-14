@@ -7,7 +7,7 @@ export default function Home() {
   const site = getSite(); const projects = getProjects();
   return (
     <div className="col">
-      <div className="text">
+      <div className="text text-wide">
         <div className="portrait" style={{ width: "min(46%, 240px)", marginBottom: "3rem" }}>
           {site.portrait ? /* eslint-disable-next-line @next/next/no-img-element */ <img src={site.portrait} alt="Portrait of Jay Naik" /> : <span>Portrait placeholder<br />(set <code>portrait</code> in content/site.json)</span>}
         </div>
@@ -15,6 +15,7 @@ export default function Home() {
           <p>Hi, I&rsquo;m Jay.</p>
           <p>Welcome to my corner of the internet. I&rsquo;m an engineer and AI product builder, and I&rsquo;m pursuing my MBA at Cornell Johnson.</p>
           <p>{site.statement} <span className="ph">Placeholder copy</span></p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <span className="ph">Placeholder copy</span></p>
           <p>This space is a bit of everything: the things I&rsquo;ve built in <Link href="/" className="inline">/work</Link>, the questions I keep chasing in <Link href="/curiosities" className="inline">/curiosities</Link>, what I&rsquo;m thinking in <Link href="/thinking" className="inline">/thinking</Link>, and a little more about the person behind it all at <Link href="/about" className="inline">/about</Link>.</p>
         </div>
         <div className="contact sans">

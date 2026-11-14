@@ -1,0 +1,16 @@
+[
+  { "name": "paper",    "stops": ["#fbfbf9"], "fg": "#151513", "mute": 0.72 },
+  { "name": "olive",    "stops": ["#6a5d10"], "fg": "#f6f0da", "mute": 0.88 },
+  { "name": "ember",    "stops": ["#4a2e22"], "fg": "#f0a323", "mute": 0.86 },
+  { "name": "midnight", "stops": ["#0e1630"], "fg": "#dbe6ff", "mute": 0.78 },
+  { "name": "sage",     "stops": ["#cfe0d0"], "fg": "#14301f", "mute": 0.74 },
+  { "name": "blush",    "stops": ["#f7d9d9"], "fg": "#4a1426", "mute": 0.78 },
+  { "name": "lavender", "stops": ["#e4dcff"], "fg": "#2a1a5e", "mute": 0.76 },
+  { "name": "graphite", "stops": ["#1b1b1d"], "fg": "#f3f3f1", "mute": 0.74 },
+  { "name": "citrus",   "stops": ["#e3ec8f"], "fg": "#2b3300", "mute": 0.78 },
+  { "name": "ocean",    "stops": ["#0b3b4a", "#166660"], "fg": "#f0fffb", "mute": 0.92 },
+  { "name": "sunset",   "stops": ["#ffd9a8", "#ffb0b8"], "fg": "#3a1020", "mute": 0.8 },
+  { "name": "aurora",   "stops": ["#14213d", "#3a1f5e", "#0f4c5c"], "fg": "#f1f5ff", "mute": 0.82 },
+  { "name": "dawn",     "stops": ["#ffe3d0", "#cfe6ff"], "fg": "#1f2a44", "mute": 0.78 },
+  { "name": "berry",    "stops": ["#5b1a3a", "#2b1a5e"], "fg": "#ffe9f3", "mute": 0.86 }
+]
