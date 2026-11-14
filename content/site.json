@@ -1,0 +1,29 @@
+{
+  "name": "Jay Naik",
+  "statement": "An engineer by training, a builder by instinct, and curious about almost everything.",
+  "intro": "I work across engineering, machine learning, product and business strategy. I'm pursuing an MBA at Cornell Johnson.",
+  "now": "MBA candidate, Cornell Johnson",
+  "previously": [
+    "Tata Consultancy Services",
+    "The Math Company",
+    "UnitedHealth Group"
+  ],
+  "openTo": "Placeholder: what you are open to (roles, collaborations, conversations).",
+  "email": "hello@example.com",
+  "emailIsPlaceholder": true,
+  "timezone": "America/New_York",
+  "portrait": "",
+  "links": [
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/"
+    }
+  ],
+  "place": "",
+  "resume": "",
+  "role": "AI Product Builder"
+}
