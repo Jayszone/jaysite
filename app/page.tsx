@@ -13,9 +13,10 @@ export default function Home() {
         </div>
         <div className="prose-home">
           <p>Hi, I&rsquo;m Jay.</p>
-          <p>Welcome to my corner of the internet. I&rsquo;m an engineer and AI product builder, and I&rsquo;m pursuing my MBA at Cornell Johnson.</p>
-          <p>{site.statement} <span className="ph">Placeholder copy</span></p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <span className="ph">Placeholder copy</span></p>
+          <p>Welcome to my corner of the internet. I&rsquo;m an engineer and AI product builder, and I&rsquo;m pursuing my MBA at Cornell.</p>
+          <p>Mostly, I&rsquo;m curious. I&rsquo;m also thorough and persistent, and I think those traits define me.</p>
+          <p>I often think about interesting problems, from the small and practical, like how to keep everyone&rsquo;s hands and feet warm all winter, to the vast, like the complexities of astronomy. I&rsquo;m thoroughly curious about both ends of that range.</p>
+          <p>I like to read, although lately I haven&rsquo;t had much time for books. I like exploring different subjects, and I love exploring different cultures. I&rsquo;m especially interested in how culture shapes business and product decisions, and the everyday decisions in our own lives.</p>
           <p>This space is a bit of everything: the things I&rsquo;ve built in <Link href="/" className="inline">/work</Link>, the questions I keep chasing in <Link href="/curiosities" className="inline">/curiosities</Link>, what I&rsquo;m thinking in <Link href="/thinking" className="inline">/thinking</Link>, and a little more about the person behind it all at <Link href="/about" className="inline">/about</Link>.</p>
         </div>
         <div className="contact sans">

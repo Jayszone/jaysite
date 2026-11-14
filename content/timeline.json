@@ -1,7 +1,7 @@
 {
   "note": "Order and dates are PLACEHOLDERS. Edit this file; nothing here is verified except the organisation names.",
   "entries": [
-    { "org": "Cornell Johnson", "role": "MBA candidate", "period": "Dates to add", "summary": "Business school as a workshop for the other half of building: strategy, markets, and how organisations actually decide.", "kind": "study", "placeholder": true },
+    { "org": "Cornell", "role": "MBA candidate", "period": "Dates to add", "summary": "Business school as a workshop for the other half of building: strategy, markets, and how organisations actually decide.", "kind": "study", "placeholder": true },
     { "org": "UnitedHealth Group", "role": "Role to add", "period": "Dates to add", "summary": "Placeholder. Describe the problem space and your contribution, in terms that are safe to share publicly.", "kind": "work", "placeholder": true },
     { "org": "The Math Company", "role": "Role to add", "period": "Dates to add", "summary": "Placeholder. Describe the product, the problem and what you owned.", "kind": "work", "placeholder": true },
     { "org": "Tata Consultancy Services", "role": "Role to add", "period": "Dates to add", "summary": "Placeholder. Describe the engineering work and what it taught you.", "kind": "work", "placeholder": true }

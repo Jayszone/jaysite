@@ -160,3 +160,4 @@ main { display: block; margin-top: clamp(4rem, 12vw, 9rem); }
 
 .ftr .hint { color: var(--mute); font-size: .95rem; margin-top: .2rem; }
 .portrait:has(img) { padding: 0; border: 0; }
+.prose-home p, .about .t p { text-wrap: pretty; }

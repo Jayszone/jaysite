@@ -1,8 +1,8 @@
 {
   "name": "Jay Naik",
   "statement": "An engineer by training, a builder by instinct, and curious about almost everything.",
-  "intro": "I work across engineering, machine learning, product and business strategy. I'm pursuing an MBA at Cornell Johnson.",
-  "now": "MBA candidate, Cornell Johnson",
+  "intro": "I work across engineering, machine learning, product and business strategy. I'm pursuing an MBA at Cornell.",
+  "now": "MBA candidate, Cornell",
   "previously": [
     "Tata Consultancy Services",
     "The Math Company",
@@ -16,11 +16,11 @@
   "links": [
     {
       "label": "LinkedIn",
-      "href": "https://www.linkedin.com/"
+      "href": "https://www.linkedin.com/in/naikdhananjay"
     },
     {
       "label": "GitHub",
-      "href": "https://github.com/"
+      "href": "https://github.com/Jayszone"
     }
   ],
   "place": "",
