@@ -46,8 +46,8 @@ function Box({ x, y, w, h, title, sub, seed, tone = 1, dashed }: {
 }
 
 const OFFLINE = [
-  ["Source documents", "PDF, HTML, Markdown"],
-  ["Normalize", "PDF to Markdown"],
+  ["Source documents", "PDF, HTML, Excel"],
+  ["Normalize", "everything to Markdown"],
   ["Chunk", "fixed-size vs by section"],
   ["Embed", "text to vectors"],
   ["Vector index", "+ version and date data"],
@@ -68,7 +68,7 @@ function AppealsArchitecture() {
     <>
       <div className="viz-scroll">
         <svg className="viz sketch" viewBox="0 0 940 560" role="img"
-          aria-label="Architecture diagram. Offline, source documents are normalized, chunked, embedded and stored in a vector index. Online, a question is embedded, matched by semantic and keyword retrieval, ranked with newer versions preferred, and answered by an LLM with citations to the exact source section. A human reviews the cited passage and makes the decision.">
+          aria-label="Architecture diagram. Offline, source documents (PDF, HTML, Excel) are converted to Markdown, chunked, embedded and stored in a vector index. Online, a question is embedded, matched by semantic and keyword retrieval, ranked with newer versions preferred, and answered by an LLM with citations to the exact source section. A human reviews the cited passage and makes the decision.">
           <text x="20" y="32" className="lane">1. Build the index (offline)</text>
           {OFFLINE.map(([t, s], i) => <Box key={t} x={ox(i)} y={48} w={ow} h={84} title={t} sub={s} seed={10 + i} tone={i === 4 ? 2 : 1} />)}
           {OFFLINE.slice(0, -1).map((_, i) => <Arrow key={i} a={[ox(i) + ow + 3, 90]} b={[ox(i + 1) - 4, 90]} seed={40 + i * 4} />)}
