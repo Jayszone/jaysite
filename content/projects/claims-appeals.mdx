@@ -1,34 +1,50 @@
 ---
 title: Claims & Appeals Intelligence
 slug: claims-appeals
-year: "20XX"
-role: "Role to add"
-summary: "PLACEHOLDER. An AI-assisted system that helps people resolve claims and appeals faster and more fairly."
+year: "2024–2025"
+role: "Product Manager, AI/ML"
+summary: "An AI assistant that helps claims analysts and appeals representatives find the right guidance fast, and shows exactly where every answer comes from."
 tags: ["AI product", "Healthcare", "Decision support"]
 layers: ["Source documents", "Models & rules", "Reviewer interface", "Outcome"]
 order: 1
 visual: appeals-flow
-placeholder: true
+placeholder: false
 ---
-
-<Note>Placeholder project. Replace with a description that is safe to share publicly. Do not include confidential employer information or invented metrics.</Note>
 
 ## The problem
 
-Describe the opportunity in plain language: who was struggling, what was slow or unfair, and why it mattered.
+Most health insurance claims are settled by software in seconds. The ones that aren't are the ones that matter: the tricky cases that get flagged and land on a person's desk.
 
-## My role
+For the analyst, that desk was a scavenger hunt. To decide a single flagged claim, they had to dig through the company's written procedures, which lived in different systems and different formats, some running to dozens of pages. A hard case could mean reading anywhere from four to ten of them. The search tools matched keywords and handed back whole documents, not answers. Then came the part nobody enjoys: working out which version was current, and going back over everything because you weren't quite sure.
 
-State what you owned: product direction, modelling, engineering, stakeholder work. Be specific and honest.
+Appeals had the same problem in a different costume. A representative on the phone or in a chat didn't always know the answer, so they went looking while the person on the other end waited.
 
-## Approach
+## What I did
 
-Walk through the design of the system layer by layer. The diagram above is a template: each plate is a layer of the system, from raw inputs to the interface a person actually uses.
+I joined as the product manager, and the goal was easy to say: give people the answer, not another pile of PDFs.
 
-## Outcomes
+Our first version did exactly that. An AI assistant read the procedures and answered in plain language. It was quick, and the experienced analysts, the people whose judgment matters most, wouldn't use it. They couldn't see where an answer came from, so they went and checked everything by hand anyway. A fast answer you have to re-verify isn't much help.
 
-Only publish outcomes that are cleared for sharing. Leave this section short rather than inventing numbers.
+So I changed what we were building. Every answer now came with its sources: a link straight to the exact passage it was based on. Instead of "trust me," the assistant said "here's where this comes from." That one change turned a clever answer machine into something an analyst could stand behind.
 
-## What I learned
+Underneath, a few unglamorous problems took most of the work. The guidance came as PDFs, web pages and other formats, so it had to be cleaned into a common shape and split into pieces the system could find reliably. And when several versions of the same procedure existed, the assistant sometimes reached for an old one, so we taught it to prefer the newest.
 
-One or two honest lessons.
+One line I held on purpose: the assistant never decides a claim. It finds and explains the evidence. People make the call, and harder cases still go to senior reviewers, because coverage and payment decisions affect real lives.
+
+Once it worked for claims, we pointed the same capability at appeals, so representatives could answer questions mid-conversation with the source in hand.
+
+## What changed
+
+Analysts spent far less time searching and more time doing the part only a person can do, which is judging the case. On the step we set out to fix, finding and checking the guidance, time dropped by around 80%. That is one step of the job, not the whole case, so total handling time fell by less, but the biggest block of waiting and re-checking was gone.
+
+Trust followed. Once answers could be checked in one click, adoption climbed by about 20%. For appeals, representatives could answer while the customer was still on the line instead of promising to call back.
+
+## What it was worth
+
+The business case was simple: give hours back to people who handle a lot of cases. The program was built around roughly $4M a year in savings across claims and appeals, with the time returned to analysts and representatives as the main source.
+
+## What I took from it
+
+- **Trust is a feature.** People won't use a fast answer they can't check.
+- **Let the AI do the homework and people do the deciding.** The boundary was a design choice, not a limitation.
+- **Measure the whole journey from day one.** Next time I'd start tracking the full workflow earlier, and build in policy effective dates from the start, so the results are even easier to prove.
