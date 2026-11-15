@@ -95,48 +95,49 @@ function AppealsArchitecture() {
   );
 }
 
-const STEPS: [string, string[]][] = [
-  ["Eligibility", ["employee or", "dependent confirms", "access"]],
-  ["Physician order", ["telehealth partner", "or referral", "writes it"]],
-  ["Provider", ["vetted direct-pay", "provider accepts"]],
-  ["Booking", ["appointment is", "scheduled and", "confirmed"]],
-  ["Payment", ["voucher or direct", "payment, no claim"]],
-  ["Support", ["follow-up, fixes", "and feedback"]],
-];
-const FIXES: [string, string[]][] = [
-  ["Compared options", ["telehealth,", "referrals, in-house", "clinical support"]],
-  ["Vetted partners", ["repeatable process", "for provider", "acceptance issues"]],
-  ["Redesigned flow", ["process for failed", "bookings and", "participant support"]],
-];
-
-function HealtheeJourney() {
-  const w = 142, sx = (i: number) => 14 + i * 158;
+function HealtheeStrategy() {
+  const ev: [string, string[]][] = [
+    ["Pilot data", ["100 people: what they used,", "where they stalled"]],
+    ["Claims analysis", ["5,000+ data points: where", "the money goes"]],
+    ["Cost comparison", ["providers and partners,", "priced side by side"]],
+  ];
+  const people = ["Product", "HR", "Finance", "Benefits Support", "Sales", "Customer Success"];
   return (
     <>
       <div className="viz-scroll">
-        <svg className="viz sketch" viewBox="0 0 960 400" role="img"
-          aria-label="Diagram of the participant journey: eligibility, physician order, provider, booking, payment, support. Participants got stuck most at physician orders, provider acceptance and booking. For each, the fix is listed: compared ways to get orders, vetted partners, and a redesigned booking flow.">
-          <text x="14" y="30" className="lane">The participant journey</text>
-          <Line a={[sx(1), 98]} b={[sx(3) + w, 98]} seed={5} dashed />
-          <Line a={[sx(1), 98]} b={[sx(1), 108]} seed={6} />
-          <Line a={[sx(3) + w, 98]} b={[sx(3) + w, 108]} seed={7} />
-          <text x={(sx(1) + sx(3) + w) / 2} y="84" className="cap">where people got stuck most</text>
-          {STEPS.map(([t, s2], i) => <Box key={t} x={sx(i)} y={112} w={w} h={104} title={t} sub={s2} seed={20 + i} tone={i >= 1 && i <= 3 ? 2 : 1} />)}
-          {STEPS.slice(0, -1).map((_, i) => <Arrow key={i} a={[sx(i) + w + 3, 164]} b={[sx(i + 1) - 4, 164]} seed={50 + i * 4} />)}
-          <text x="14" y="296" className="lane" style={{ textAnchor: "start" }}>What I did</text>
-          <text x="14" y="320" className="lane" style={{ textAnchor: "start" }}>about it</text>
-          {FIXES.map(([t, s2], i) => (
-            <g key={t}>
-              <Arrow a={[sx(i + 1) + w / 2, 220]} b={[sx(i + 1) + w / 2, 254]} seed={80 + i * 4} dashed />
-              <Box x={sx(i + 1)} y={260} w={w} h={104} title={t} sub={s2} seed={100 + i} tone={0} dashed />
-            </g>
-          ))}
+        <svg className="viz sketch" viewBox="0 0 960 540" role="img"
+          aria-label="Diagram of how a pilot became a business decision. Three kinds of evidence, pilot data, claims analysis and cost comparison, feed one question: is it worth rolling out to an employer, and at what price. Trade-offs between cost, employee experience and how hard it is to run weigh on that question. I modelled adoption scenarios and break-even, wrote a pricing and rollout recommendation, and the client deal was secured. Six teams that did not report to me had to be brought along.">
+          <text x="14" y="30" className="lane">From evidence to a decision</text>
+
+          {ev.map(([t, l], i) => <Box key={t} x={14} y={58 + i * 110} w={196} h={84} title={t} sub={l} seed={10 + i} tone={1} />)}
+          {[180, 210, 240].map((y, i) => <Arrow key={i} a={[214, 100 + i * 110]} b={[266, y]} seed={30 + i * 4} />)}
+
+          <Box x={270} y={150} w={170} h={120} title="Roll it out?" sub={["Is it worth it for an", "employer, and at", "what price?"]} seed={50} tone={2} />
+          <Box x={270} y={304} w={170} h={100} title="Trade-offs" sub={["cost vs employee", "experience vs how", "hard it is to run"]} seed={55} tone={0} dashed />
+          <Arrow a={[355, 300]} b={[355, 275]} seed={60} dashed />
+
+          <Box x={500} y={116} w={196} h={84} title="Adoption scenarios" sub={["10%, 20% and 30%", "of employees using it"]} seed={70} tone={1} />
+          <Box x={500} y={232} w={196} h={84} title="Break-even" sub={["under 0.5% of the", "$7.79M modeled savings"]} seed={75} tone={1} />
+          <Arrow a={[444, 190]} b={[496, 160]} seed={80} />
+          <Arrow a={[444, 232]} b={[496, 274]} seed={84} />
+
+          <Box x={750} y={116} w={196} h={84} title="Recommendation" sub={["pricing, rollout plan,", "priority procedures"]} seed={90} tone={1} />
+          <Box x={750} y={232} w={196} h={84} title="Decision" sub="client deal secured" seed={95} tone={2} />
+          <Arrow a={[700, 160]} b={[746, 156]} seed={100} />
+          <Arrow a={[700, 274]} b={[746, 192]} seed={104} />
+          <Arrow a={[848, 204]} b={[848, 228]} seed={108} />
+
+          <text x="14" y="440" className="lane" style={{ textAnchor: "start" }}>People I had to bring along</text>
+          {people.map((t, i) => <Box key={t} x={14 + i * 158} y={456} w={142} h={44} title={t} seed={120 + i} tone={0} />)}
+          <text x="14" y="526" className="note" style={{ textAnchor: "start" }}>None of them reported to me, so progress depended on specific requests, made early.</text>
         </svg>
       </div>
       <ol className="sr-only">
-        <li>Journey steps: eligibility, physician order, provider, booking, payment, support.</li>
-        <li>Most friction: physician orders, provider acceptance and booking.</li>
-        <li>Fixes: compared ways to get physician orders, vetted partners, and a redesigned booking flow.</li>
+        <li>Evidence: pilot data, claims analysis, cost comparison.</li>
+        <li>Question: is it worth rolling out to an employer, and at what price, weighing cost, employee experience and operational difficulty.</li>
+        <li>Modelled adoption at 10, 20 and 30 percent, and break-even at under 0.5 percent of the 7.79 million dollar modeled savings.</li>
+        <li>Recommendation on pricing, rollout and priority procedures; the client deal was secured.</li>
+        <li>Product, HR, Finance, Benefits Support, Sales and Customer Success had to be brought along without reporting to me.</li>
       </ol>
     </>
   );
@@ -174,4 +175,4 @@ function RouteCompare() {
   );
 }
 
-export const VISUALS: Record<string, () => React.ReactElement> = { "appeals-architecture": AppealsArchitecture, "healthee-journey": HealtheeJourney, "route-compare": RouteCompare };
+export const VISUALS: Record<string, () => React.ReactElement> = { "appeals-architecture": AppealsArchitecture, "healthee-strategy": HealtheeStrategy, "route-compare": RouteCompare };
