@@ -99,7 +99,7 @@ main { display: block; margin-top: clamp(4rem, 12vw, 9rem); }
 .cur .kick { font-family: var(--sans); font-size: .8rem; color: var(--mute); white-space: nowrap; }
 .cur summary::after { content: "+"; font-family: var(--sans); color: var(--mute); margin-left: .4rem; transition: transform .4s var(--ease); }
 .cur details[open] summary::after { transform: rotate(45deg); }
-.cur .det { padding: 0 0 1.5rem; max-width: var(--text); }
+.cur .det { padding: 0 0 1.5rem; } .cur .det p { max-width: var(--text); }
 .cur summary:hover .tt { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 
 /* ---------- Thinking ---------- */
@@ -184,3 +184,9 @@ main { display: block; margin-top: clamp(4rem, 12vw, 9rem); }
 .entry h3::before { content: ""; display: inline-block; width: .5rem; height: .5rem; border-radius: 50%; margin-right: .6rem; vertical-align: .12em; background: color-mix(in srgb, var(--ac, var(--mute)) 72%, var(--fg)); }
 .prose h2::after { content: ""; display: block; width: 28px; height: 2px; margin-top: .7rem; background: color-mix(in srgb, var(--ac, var(--line)) 72%, var(--fg)); }
 .facts dt::before { content: none; }
+
+.gal { margin: 1.6rem 0 0; }
+.gal-row { display: flex; gap: .8rem; align-items: flex-start; }
+.gal-row img { min-width: 0; width: 100%; height: auto; display: block; border: 1px solid var(--line); }
+.gal figcaption { color: var(--mute); font-family: var(--sans); font-size: .8rem; margin-top: .6rem; }
+@media (max-width: 560px) { .gal-row { flex-direction: column; } .gal-row img { flex: none !important; } }

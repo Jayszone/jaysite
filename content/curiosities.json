@@ -4,7 +4,20 @@
     "title": "Bidri art, from my hometown",
     "kicker": "Craft and culture",
     "blurb": "A 600-year-old craft from Bidar that was close to disappearing.",
-    "detail": "Bidri is a roughly 600-year-old, Persian-influenced metal craft from my hometown, Bidar, in Karnataka. In 2020 it was close to disappearing.\n\nThat year I visited a local workshop. I admired the artisans' detailed work, and I felt a pang of guilt for having taken this heritage for granted. As I learned about their financial struggles and the divisions within the community, I realised that if I didn't step up to preserve the craft, no one else might.\n\nI started with one-on-one conversations with key artisans, building trust around shared goals. To make their work more visible, I launched a social media campaign about their craft and their stories. With NGO partners I raised INR 70,000, and I worked with local influencers to widen the reach.\n\nWithin six months, revenue rose by 60% for more than 80 artisans, and the community had a renewed sense of pride and unity."
+    "detail": "Bidri is a roughly 600-year-old, Persian-influenced metal craft from my hometown, Bidar, in Karnataka. In 2020 it was close to disappearing.\n\nThat year I visited a local workshop. I admired the artisans' detailed work, and I felt a pang of guilt for having taken this heritage for granted. As I learned about their financial struggles and the divisions within the community, I realised that if I didn't step up to preserve the craft, no one else might.\n\nI started with one-on-one conversations with key artisans, building trust around shared goals. To make their work more visible, I launched a social media campaign about their craft and their stories. With NGO partners I raised INR 70,000, and I worked with local influencers to widen the reach.\n\nWithin six months, revenue rose by 60% for more than 80 artisans, and the community had a renewed sense of pride and unity.",
+    "images": [
+      {
+        "src": "/bidri-vase.jpg",
+        "alt": "A silver-inlaid Bidri vase and a decorated Bidri plate on dark metal",
+        "ratio": 1.777
+      },
+      {
+        "src": "/bidri-necklace.jpg",
+        "alt": "A necklace with three flower-shaped Bidri pendants on a dark bust",
+        "ratio": 0.8
+      }
+    ],
+    "caption": "Bidri ware. Images shown for illustration."
   },
   {
     "id": "mechanisms",

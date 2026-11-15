@@ -12,7 +12,7 @@ export type Article = {
   slug: string; title: string; summary: string; date: string; tags: string[];
   featured: boolean; glyph: string; placeholder: boolean; readingTime: number; body: string;
 };
-export type Curiosity = { id: string; title: string; kicker: string; blurb: string; detail: string; link?: string };
+export type Curiosity = { id: string; title: string; kicker: string; blurb: string; detail: string; link?: string; images?: { src: string; alt: string; ratio: number }[]; caption?: string };
 export type TimelineEntry = {
   org: string; role: string; period: string; summary: string; kind: string; placeholder?: boolean;
 };
