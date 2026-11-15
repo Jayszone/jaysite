@@ -16,7 +16,7 @@ placeholder: false
 
 Most claims are adjudicated automatically. A claim that fails an automated check is routed to an analyst as an exception, and the analyst has to find the procedure that applies to it.
 
-Those procedures (SOPs) were spread across several knowledge bases, in PDF, HTML, Excel and other formats. Some PDFs ran from 2 to 80 pages, and a complex claim could require 4 to 10 of them. Search was keyword-based and returned whole documents, not answers. Analysts read each document to find the relevant passage, compared versions when documents disagreed, and rechecked their conclusion before submitting it.
+Those procedures (SOPs) lived in a central knowledge base (KB), in many formats: PDF, HTML, Word, Excel, plain text and images such as JPEGs. Some PDFs ran from 2 to 80 pages, and a complex claim could require 4 to 10 of them. Search was keyword-based and returned whole documents, not answers. Analysts read each document to find the relevant passage, compared versions when documents disagreed, and rechecked their conclusion before submitting it.
 
 Appeals had the same problem in a different workflow. Representatives answering policy and procedure questions by phone or chat had to look up the guidance while the customer waited.
 
@@ -28,7 +28,7 @@ Version 1 returned answers only. Experienced analysts did not use it, because th
 
 Three other problems took most of the engineering time:
 
-- **Ingestion.** The documents came in several formats, including PDF, HTML and Excel. We converted them all to Markdown so they shared one format, then tested fixed-size chunks against chunks that follow section boundaries, which keep a heading with the text under it.
+- **Ingestion.** The knowledge base held PDF, HTML, Word, Excel, plain text and image files. We converted them all to Markdown so they shared one format, then tested fixed-size chunks against chunks that follow section boundaries, which keep a heading with the text under it.
 - **Versions.** Several versions of the same SOP existed, and the assistant could return outdated guidance. We changed retrieval to prioritize newer documents using timestamps. This is imperfect, because a timestamp shows when a file was updated, not which policy applied on the claim's date of service. Explicit effective dates and supersession rules would handle it properly.
 - **Decision authority.** The assistant retrieves and explains guidance. Analysts make the claim decision, and complex cases still go to senior review.
 

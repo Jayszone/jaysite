@@ -25,32 +25,27 @@ function Elbow({ pts, seed }: { pts: Pt[]; seed: number }) {
 function Box({ x, y, w, h, title, sub, seed, tone = 1, dashed }: {
   x: number; y: number; w: number; h: number; title: string; sub?: string | string[]; seed: number; tone?: 0 | 1 | 2; dashed?: boolean;
 }) {
-  const lines = Array.isArray(sub) ? sub : null;
+  const lines = Array.isArray(sub) ? sub : sub ? [sub] : [];
+  const n = lines.length;
+  // centre the text block (title + n lines) vertically in the box
+  const total = n ? 40 + 16 * (n - 1) : 0;
+  const titleY = n ? y + (h - total) / 2 + 14 : y + h / 2 + 5;
   return (
     <g>
       <rect x={x} y={y} width={w} height={h} rx={8} className={`bx t${tone}`} />
       {paths(gen.rectangle(x, y, w, h, { seed, roughness: 1.25, bowing: 1.4, strokeLineDash: dashed ? [8, 6] : undefined }))}
-      {lines ? (
-        <>
-          <text x={x + w / 2} y={y + 30} className="hd">{title}</text>
-          {lines.map((l, i) => <text key={i} x={x + w / 2} y={y + 54 + i * 16} className="sb">{l}</text>)}
-        </>
-      ) : (
-        <>
-          <text x={x + w / 2} y={y + h / 2 - (sub ? 4 : -5)} className="hd">{title}</text>
-          {sub && <text x={x + w / 2} y={y + h / 2 + 17} className="sb">{sub}</text>}
-        </>
-      )}
+      <text x={x + w / 2} y={titleY} className="hd">{title}</text>
+      {lines.map((l, i) => <text key={i} x={x + w / 2} y={titleY + 22 + i * 16} className="sb">{l}</text>)}
     </g>
   );
 }
 
-const OFFLINE = [
-  ["Source documents", "PDF, HTML, Excel"],
-  ["Normalize", "everything to Markdown"],
-  ["Chunk", "fixed-size vs by section"],
-  ["Embed", "text to vectors"],
-  ["Vector index", "+ version and date data"],
+const OFFLINE: [string, string[]][] = [
+  ["Knowledge base", ["PDF, HTML, Word,", "Excel, text, images"]],
+  ["Normalize", ["everything to", "Markdown"]],
+  ["Chunk", ["fixed-size vs", "by section"]],
+  ["Embed", ["text to vectors"]],
+  ["Vector index", ["+ version and", "date data"]],
 ];
 const ONLINE = [
   ["Analyst or rep", "asks in plain language"],
@@ -68,7 +63,7 @@ function AppealsArchitecture() {
     <>
       <div className="viz-scroll">
         <svg className="viz sketch" viewBox="0 0 940 560" role="img"
-          aria-label="Architecture diagram. Offline, source documents (PDF, HTML, Excel) are converted to Markdown, chunked, embedded and stored in a vector index. Online, a question is embedded, matched by semantic and keyword retrieval, ranked with newer versions preferred, and answered by an LLM with citations to the exact source section. A human reviews the cited passage and makes the decision.">
+          aria-label="Architecture diagram. Offline, knowledge base files (PDF, HTML, Word, Excel, text and images) are converted to Markdown, chunked, embedded and stored in a vector index. Online, a question is embedded, matched by semantic and keyword retrieval, ranked with newer versions preferred, and answered by an LLM with citations to the exact source section. A human reviews the cited passage and makes the decision.">
           <text x="20" y="32" className="lane">1. Build the index (offline)</text>
           {OFFLINE.map(([t, s], i) => <Box key={t} x={ox(i)} y={48} w={ow} h={84} title={t} sub={s} seed={10 + i} tone={i === 4 ? 2 : 1} />)}
           {OFFLINE.slice(0, -1).map((_, i) => <Arrow key={i} a={[ox(i) + ow + 3, 90]} b={[ox(i + 1) - 4, 90]} seed={40 + i * 4} />)}
