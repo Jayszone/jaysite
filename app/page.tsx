@@ -35,7 +35,7 @@ export default function Home() {
         <div>
           {projects.map((p) => (
             <Link key={p.slug} href={`/work/${p.slug}`} className="entry">
-              <Frame src={p.image} alt={p.title} visual={p.visual} />
+              <Frame src={p.image} alt={p.imageAlt || p.title} visual={p.visual} />
               <h3>{p.title}{p.placeholder && <span className="ph">Placeholder</span>}</h3>
               <p>{p.summary.replace(/^PLACEHOLDER\.\s*/, "")}</p>
             </Link>

@@ -23,7 +23,7 @@ export default async function Project({ params }: { params: Promise<{ slug: stri
       <p className="lede">{p.summary.replace(/^PLACEHOLDER\.\s*/, "")}</p>
       <dl className="facts"><dt>Role</dt><dd>{p.role}</dd><dt>Year</dt><dd>{p.year}</dd><dt>Focus</dt><dd>{p.tags.join(" · ")}</dd></dl>
       <div className="stack" style={{ marginTop: "3rem" }}>
-        <Frame src={p.image} alt={p.title} visual={p.visual} />
+        <Frame src={p.image} alt={p.imageAlt || p.title} visual={p.visual} />
         <div className="prose"><Mdx source={p.body} /></div>
       </div>
       <Link href={`/work/${next.slug}`} className="next"><span>Next</span><b>{next.title} →</b></Link>
