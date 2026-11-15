@@ -17,7 +17,7 @@ export default async function Project({ params }: { params: Promise<{ slug: stri
   if (!p) notFound();
   const all = getProjects(); const next = all[(all.findIndex((x) => x.slug === p.slug) + 1) % all.length];
   return (
-    <div className="col">
+    <div className="col" style={p.accent ? ({ ["--ac" as string]: p.accent } as React.CSSProperties) : undefined}>
       <Link href="/" className="back">← Work</Link>
       <h1 className="h1">{p.title}{p.placeholder && <span className="ph">Placeholder</span>}</h1>
       <p className="lede">{p.summary.replace(/^PLACEHOLDER\.\s*/, "")}</p>

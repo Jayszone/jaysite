@@ -34,7 +34,7 @@ export default function Home() {
         <h2 className="sh" id="sel">Selected work</h2>
         <div>
           {projects.map((p) => (
-            <Link key={p.slug} href={`/work/${p.slug}`} className="entry">
+            <Link key={p.slug} href={`/work/${p.slug}`} className="entry" style={p.accent ? ({ ["--ac" as string]: p.accent } as React.CSSProperties) : undefined}>
               <Frame src={p.image} alt={p.imageAlt || p.title} visual={p.visual} />
               <h3>{p.title}{p.placeholder && <span className="ph">Placeholder</span>}</h3>
               <p>{p.summary.replace(/^PLACEHOLDER\.\s*/, "")}</p>
