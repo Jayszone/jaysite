@@ -23,14 +23,24 @@ function Elbow({ pts, seed }: { pts: Pt[]; seed: number }) {
   return (<>{paths(gen.linearPath(pts, { seed, roughness: 1.1, strokeLineDash: [7, 7] }))}<Arrow a={[prev[0], prev[1] - 0.01]} b={last} seed={seed + 3} /></>);
 }
 function Box({ x, y, w, h, title, sub, seed, tone = 1, dashed }: {
-  x: number; y: number; w: number; h: number; title: string; sub?: string; seed: number; tone?: 0 | 1 | 2; dashed?: boolean;
+  x: number; y: number; w: number; h: number; title: string; sub?: string | string[]; seed: number; tone?: 0 | 1 | 2; dashed?: boolean;
 }) {
+  const lines = Array.isArray(sub) ? sub : null;
   return (
     <g>
       <rect x={x} y={y} width={w} height={h} rx={8} className={`bx t${tone}`} />
       {paths(gen.rectangle(x, y, w, h, { seed, roughness: 1.25, bowing: 1.4, strokeLineDash: dashed ? [8, 6] : undefined }))}
-      <text x={x + w / 2} y={y + h / 2 - (sub ? 4 : -5)} className="hd">{title}</text>
-      {sub && <text x={x + w / 2} y={y + h / 2 + 17} className="sb">{sub}</text>}
+      {lines ? (
+        <>
+          <text x={x + w / 2} y={y + 30} className="hd">{title}</text>
+          {lines.map((l, i) => <text key={i} x={x + w / 2} y={y + 54 + i * 16} className="sb">{l}</text>)}
+        </>
+      ) : (
+        <>
+          <text x={x + w / 2} y={y + h / 2 - (sub ? 4 : -5)} className="hd">{title}</text>
+          {sub && <text x={x + w / 2} y={y + h / 2 + 17} className="sb">{sub}</text>}
+        </>
+      )}
     </g>
   );
 }
@@ -85,4 +95,83 @@ function AppealsArchitecture() {
   );
 }
 
-export const VISUALS: Record<string, () => React.ReactElement> = { "appeals-architecture": AppealsArchitecture };
+const STEPS: [string, string[]][] = [
+  ["Eligibility", ["employee or", "dependent confirms", "access"]],
+  ["Physician order", ["telehealth partner", "or referral", "writes it"]],
+  ["Provider", ["vetted direct-pay", "provider accepts"]],
+  ["Booking", ["appointment is", "scheduled and", "confirmed"]],
+  ["Payment", ["voucher or direct", "payment, no claim"]],
+  ["Support", ["follow-up, fixes", "and feedback"]],
+];
+const FIXES: [string, string[]][] = [
+  ["Compared options", ["telehealth,", "referrals, in-house", "clinical support"]],
+  ["Vetted partners", ["repeatable process", "for provider", "acceptance issues"]],
+  ["Redesigned flow", ["process for failed", "bookings and", "participant support"]],
+];
+
+function HealtheeJourney() {
+  const w = 142, sx = (i: number) => 14 + i * 158;
+  return (
+    <>
+      <div className="viz-scroll">
+        <svg className="viz sketch" viewBox="0 0 960 400" role="img"
+          aria-label="Diagram of the participant journey: eligibility, physician order, provider, booking, payment, support. Participants got stuck most at physician orders, provider acceptance and booking. For each, the fix is listed: compared ways to get orders, vetted partners, and a redesigned booking flow.">
+          <text x="14" y="30" className="lane">The participant journey</text>
+          <Line a={[sx(1), 98]} b={[sx(3) + w, 98]} seed={5} dashed />
+          <Line a={[sx(1), 98]} b={[sx(1), 108]} seed={6} />
+          <Line a={[sx(3) + w, 98]} b={[sx(3) + w, 108]} seed={7} />
+          <text x={(sx(1) + sx(3) + w) / 2} y="84" className="cap">where people got stuck most</text>
+          {STEPS.map(([t, s2], i) => <Box key={t} x={sx(i)} y={112} w={w} h={104} title={t} sub={s2} seed={20 + i} tone={i >= 1 && i <= 3 ? 2 : 1} />)}
+          {STEPS.slice(0, -1).map((_, i) => <Arrow key={i} a={[sx(i) + w + 3, 164]} b={[sx(i + 1) - 4, 164]} seed={50 + i * 4} />)}
+          <text x="14" y="296" className="lane" style={{ textAnchor: "start" }}>What I did</text>
+          <text x="14" y="320" className="lane" style={{ textAnchor: "start" }}>about it</text>
+          {FIXES.map(([t, s2], i) => (
+            <g key={t}>
+              <Arrow a={[sx(i + 1) + w / 2, 220]} b={[sx(i + 1) + w / 2, 254]} seed={80 + i * 4} dashed />
+              <Box x={sx(i + 1)} y={260} w={w} h={104} title={t} sub={s2} seed={100 + i} tone={0} dashed />
+            </g>
+          ))}
+        </svg>
+      </div>
+      <ol className="sr-only">
+        <li>Journey steps: eligibility, physician order, provider, booking, payment, support.</li>
+        <li>Most friction: physician orders, provider acceptance and booking.</li>
+        <li>Fixes: compared ways to get physician orders, vetted partners, and a redesigned booking flow.</li>
+      </ol>
+    </>
+  );
+}
+
+function RouteCompare() {
+  const w = 200, x = (i: number) => 20 + i * 240;
+  return (
+    <>
+      <div className="viz-scroll">
+        <svg className="viz sketch" viewBox="0 0 960 440" role="img"
+          aria-label="Two routes to the same service. Through insurance: employee, health plan with network and prior rules, in-network provider billing a negotiated rate, then a claim and cost sharing. Direct pay: employee, direct-pay provider who books the visit, then a posted price paid once with no claim.">
+          <text x="20" y="32" className="lane">Through insurance</text>
+          {[["Employee", "needs a service"], ["Health plan", "network and prior rules"], ["In-network provider", "bills a negotiated rate"], ["Claim and cost sharing", "deductible or coinsurance"]].map(([t, s2], i) => (
+            <Box key={t} x={x(i)} y={48} w={w} h={84} title={t} sub={s2} seed={10 + i} tone={i === 3 ? 2 : i === 0 ? 0 : 1} />
+          ))}
+          {[0, 1, 2].map((i) => <Arrow key={i} a={[x(i) + w + 3, 90]} b={[x(i + 1) - 4, 90]} seed={30 + i * 4} />)}
+
+          <text x="20" y="232" className="lane">Direct pay (Healthee Access)</text>
+          {[["Employee", "needs a service"], ["Direct-pay provider", "books the visit"], ["Posted price, paid once", "no claim to adjudicate"]].map(([t, s2], i) => (
+            <Box key={t} x={x(i)} y={248} w={w} h={84} title={t} sub={s2} seed={60 + i} tone={i === 2 ? 2 : i === 0 ? 0 : 1} />
+          ))}
+          {[0, 1].map((i) => <Arrow key={i} a={[x(i) + w + 3, 290]} b={[x(i + 1) - 4, 290]} seed={80 + i * 4} />)}
+
+          <text x="20" y="392" className="note" style={{ textAnchor: "start" }}>Fewer handoffs can mean a lower price for some services.</text>
+          <text x="20" y="414" className="note" style={{ textAnchor: "start" }}>The gap varies by service and market. Direct pay is not always cheaper.</text>
+        </svg>
+      </div>
+      <ol className="sr-only">
+        <li>Through insurance: employee, health plan, in-network provider, claim and cost sharing.</li>
+        <li>Direct pay: employee, direct-pay provider, posted price paid once with no claim.</li>
+        <li>Direct pay is not always cheaper; the gap varies by service and market.</li>
+      </ol>
+    </>
+  );
+}
+
+export const VISUALS: Record<string, () => React.ReactElement> = { "appeals-architecture": AppealsArchitecture, "healthee-journey": HealtheeJourney, "route-compare": RouteCompare };
