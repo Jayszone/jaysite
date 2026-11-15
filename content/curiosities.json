@@ -1,11 +1,72 @@
 [
-  { "id": "mechanisms", "title": "How things mesh", "kicker": "Mechanisms", "blurb": "Sample: small systems whose parts quietly depend on each other.", "detail": "SAMPLE ENTRY. Replace this with a note on something you find fascinating: why you like it, what you've read, a link worth sharing. Each entry lives in content/curiosities.json." },
-  { "id": "geometry", "title": "Polyhedra", "kicker": "Geometry", "blurb": "Sample: Leonardo drew them for Pacioli. The hero's core is one of them.", "detail": "SAMPLE ENTRY. Leonardo da Vinci illustrated polyhedra for Luca Pacioli's De divina proportione (1509). The dodecahedron at the heart of the homepage instrument is a nod to that collaboration. Add your own notes here." },
-  { "id": "flight", "title": "Wings and ribs", "kicker": "Flight", "blurb": "Sample: the oldest dream in the notebook.", "detail": "SAMPLE ENTRY. A space for something about flight, or about any old idea that was waiting for the right materials." },
-  { "id": "instruments", "title": "Dividers", "kicker": "Instruments", "blurb": "Sample: tools that make thinking measurable.", "detail": "SAMPLE ENTRY. Instruments extend what a mind can do. Add the instrument (physical or conceptual) you can't stop thinking about." },
-  { "id": "patterns", "title": "The spiral again", "kicker": "Patterns", "blurb": "Sample: why the same shape keeps turning up.", "detail": "SAMPLE ENTRY. Patterns that recur across nature, markets and software. Add a few you've noticed." },
-  { "id": "seeing", "title": "Learning to look", "kicker": "Optics", "blurb": "Sample: noticing is a skill.", "detail": "SAMPLE ENTRY. Lenses, perspective, design critique: anything about seeing more clearly." },
-  { "id": "business", "title": "Business model flywheels", "kicker": "Business models", "blurb": "Sample: why some companies compound.", "detail": "SAMPLE ENTRY. A business model you find elegant, and why. Add a link or a diagram." },
-  { "id": "books", "title": "Books I return to", "kicker": "Reading", "blurb": "Sample: a shelf, not a ranking.", "detail": "SAMPLE ENTRY. Replace with real titles and a line on why each stuck. Nothing here is a claim about what Jay has read." },
-  { "id": "minds", "title": "Thinking machines", "kicker": "AI", "blurb": "Sample: what models are good at, and what they are not.", "detail": "SAMPLE ENTRY. Notes, experiments and open questions about AI, kept separate from product work." }
+  {
+    "id": "bidri",
+    "title": "Bidri art, from my hometown",
+    "kicker": "Craft and culture",
+    "blurb": "A 600-year-old craft from Bidar that was close to disappearing.",
+    "detail": "Bidri is a roughly 600-year-old, Persian-influenced metal craft from my hometown, Bidar, in Karnataka. In 2020 it was close to disappearing.\n\nThat year I visited a local workshop. I admired the artisans' detailed work, and I felt a pang of guilt for having taken this heritage for granted. As I learned about their financial struggles and the divisions within the community, I realised that if I didn't step up to preserve the craft, no one else might.\n\nI started with one-on-one conversations with key artisans, building trust around shared goals. To make their work more visible, I launched a social media campaign about their craft and their stories. With NGO partners I raised INR 70,000, and I worked with local influencers to widen the reach.\n\nWithin six months, revenue rose by 60% for more than 80 artisans, and the community had a renewed sense of pride and unity."
+  },
+  {
+    "id": "mechanisms",
+    "title": "How things mesh",
+    "kicker": "Mechanisms",
+    "blurb": "Sample: small systems whose parts quietly depend on each other.",
+    "detail": "SAMPLE ENTRY. Replace this with a note on something you find fascinating: why you like it, what you've read, a link worth sharing. Each entry lives in content/curiosities.json."
+  },
+  {
+    "id": "geometry",
+    "title": "Polyhedra",
+    "kicker": "Geometry",
+    "blurb": "Sample: Leonardo drew them for Pacioli. The hero's core is one of them.",
+    "detail": "SAMPLE ENTRY. Leonardo da Vinci illustrated polyhedra for Luca Pacioli's De divina proportione (1509). The dodecahedron at the heart of the homepage instrument is a nod to that collaboration. Add your own notes here."
+  },
+  {
+    "id": "flight",
+    "title": "Wings and ribs",
+    "kicker": "Flight",
+    "blurb": "Sample: the oldest dream in the notebook.",
+    "detail": "SAMPLE ENTRY. A space for something about flight, or about any old idea that was waiting for the right materials."
+  },
+  {
+    "id": "instruments",
+    "title": "Dividers",
+    "kicker": "Instruments",
+    "blurb": "Sample: tools that make thinking measurable.",
+    "detail": "SAMPLE ENTRY. Instruments extend what a mind can do. Add the instrument (physical or conceptual) you can't stop thinking about."
+  },
+  {
+    "id": "patterns",
+    "title": "The spiral again",
+    "kicker": "Patterns",
+    "blurb": "Sample: why the same shape keeps turning up.",
+    "detail": "SAMPLE ENTRY. Patterns that recur across nature, markets and software. Add a few you've noticed."
+  },
+  {
+    "id": "seeing",
+    "title": "Learning to look",
+    "kicker": "Optics",
+    "blurb": "Sample: noticing is a skill.",
+    "detail": "SAMPLE ENTRY. Lenses, perspective, design critique: anything about seeing more clearly."
+  },
+  {
+    "id": "business",
+    "title": "Business model flywheels",
+    "kicker": "Business models",
+    "blurb": "Sample: why some companies compound.",
+    "detail": "SAMPLE ENTRY. A business model you find elegant, and why. Add a link or a diagram."
+  },
+  {
+    "id": "books",
+    "title": "Books I return to",
+    "kicker": "Reading",
+    "blurb": "Sample: a shelf, not a ranking.",
+    "detail": "SAMPLE ENTRY. Replace with real titles and a line on why each stuck. Nothing here is a claim about what Jay has read."
+  },
+  {
+    "id": "minds",
+    "title": "Thinking machines",
+    "kicker": "AI",
+    "blurb": "Sample: what models are good at, and what they are not.",
+    "detail": "SAMPLE ENTRY. Notes, experiments and open questions about AI, kept separate from product work."
+  }
 ]

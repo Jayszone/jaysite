@@ -12,7 +12,7 @@ export default function Curiosities() {
           <li key={c.id} id={c.id}>
             <details>
               <summary><span><span className="tt">{c.title}</span><span className="bl">{c.blurb}</span></span><span className="kick">{c.kicker}</span></summary>
-              <div className="det"><p>{c.detail}</p>{c.link && <p style={{ marginTop: "1rem" }}><a className="inline" href={c.link} target="_blank" rel="noopener noreferrer">Source ↗</a></p>}</div>
+              <div className="det">{c.detail.split("\n\n").map((para, i) => <p key={i} style={i ? { marginTop: "1rem" } : undefined}>{para}</p>)}{c.link && <p style={{ marginTop: "1rem" }}><a className="inline" href={c.link} target="_blank" rel="noopener noreferrer">Source ↗</a></p>}</div>
             </details>
           </li>
         ))}
