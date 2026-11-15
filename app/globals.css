@@ -190,3 +190,11 @@ main { display: block; margin-top: clamp(4rem, 12vw, 9rem); }
 .gal-row img { min-width: 0; width: 100%; height: auto; display: block; border: 1px solid var(--line); }
 .gal figcaption { color: var(--mute); font-family: var(--sans); font-size: .8rem; margin-top: .6rem; }
 @media (max-width: 560px) { .gal-row { flex-direction: column; } .gal-row img { flex: none !important; } }
+
+/* Heading pops: titles cycle through six colours; each theme supplies readable shades (lib/themes.ts) */
+.cur li:nth-child(6n+1) .tt, .alist li:nth-child(6n+1) h2 { color: var(--pop-1, var(--fg)); }
+.cur li:nth-child(6n+2) .tt, .alist li:nth-child(6n+2) h2 { color: var(--pop-2, var(--fg)); }
+.cur li:nth-child(6n+3) .tt, .alist li:nth-child(6n+3) h2 { color: var(--pop-3, var(--fg)); }
+.cur li:nth-child(6n+4) .tt, .alist li:nth-child(6n+4) h2 { color: var(--pop-4, var(--fg)); }
+.cur li:nth-child(6n+5) .tt, .alist li:nth-child(6n+5) h2 { color: var(--pop-5, var(--fg)); }
+.cur li:nth-child(6n+6) .tt, .alist li:nth-child(6n+6) h2 { color: var(--pop-6, var(--fg)); }
