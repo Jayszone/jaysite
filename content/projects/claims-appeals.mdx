@@ -3,48 +3,46 @@ title: Claims & Appeals Intelligence
 slug: claims-appeals
 year: "2024–2025"
 role: "Product Manager, AI/ML"
-summary: "An AI assistant that helps claims analysts and appeals representatives find the right guidance fast, and shows exactly where every answer comes from."
-tags: ["AI product", "Healthcare", "Decision support"]
+summary: "An AI assistant for claims analysts and appeals representatives that answers procedure questions from internal documents and cites the exact source passage."
+tags: ["AI product", "Healthcare", "RAG"]
 layers: ["Source documents", "Models & rules", "Reviewer interface", "Outcome"]
 order: 1
 visual: appeals-flow
 placeholder: false
 ---
 
-## The problem
+## Problem
 
-Most health insurance claims are settled by software in seconds. The ones that aren't are the ones that matter: the tricky cases that get flagged and land on a person's desk.
+Most claims are adjudicated automatically. A claim that fails an automated check is routed to an analyst as an exception, and the analyst has to find the procedure that applies to it.
 
-For the analyst, that desk was a scavenger hunt. To decide a single flagged claim, they had to dig through the company's written procedures, which lived in different systems and different formats, some running to dozens of pages. A hard case could mean reading anywhere from four to ten of them. The search tools matched keywords and handed back whole documents, not answers. Then came the part nobody enjoys: working out which version was current, and going back over everything because you weren't quite sure.
+Those procedures (SOPs) were spread across several knowledge bases, in PDF, HTML, Markdown and other formats. Some PDFs ran from 2 to 80 pages, and a complex claim could require 4 to 10 of them. Search was keyword-based and returned whole documents, not answers. Analysts read each document to find the relevant passage, compared versions when documents disagreed, and rechecked their conclusion before submitting it.
 
-Appeals had the same problem in a different costume. A representative on the phone or in a chat didn't always know the answer, so they went looking while the person on the other end waited.
+Appeals had the same problem in a different workflow. Representatives answering policy and procedure questions by phone or chat had to look up the guidance while the customer waited.
 
-## What I did
+## What I built
 
-I joined as the product manager, and the goal was easy to say: give people the answer, not another pile of PDFs.
+I was the product manager for an AI assistant that answers questions from these documents. It uses retrieval-augmented generation (RAG). Documents are converted to a consistent format, split into chunks and stored in a searchable vector index. When someone asks a question, the system retrieves the most relevant chunks and generates an answer from them.
 
-Our first version did exactly that. An AI assistant read the procedures and answered in plain language. It was quick, and the experienced analysts, the people whose judgment matters most, wouldn't use it. They couldn't see where an answer came from, so they went and checked everything by hand anyway. A fast answer you have to re-verify isn't much help.
+Version 1 returned answers only. Experienced analysts did not use it, because they could not trace an answer back to a source and still verified everything by hand. Version 2 added citations: each answer links to the source document and the exact section it came from. The analyst can read the evidence and decide whether it applies.
 
-So I changed what we were building. Every answer now came with its sources: a link straight to the exact passage it was based on. Instead of "trust me," the assistant said "here's where this comes from." That one change turned a clever answer machine into something an analyst could stand behind.
+Three other problems took most of the engineering time:
 
-Underneath, a few unglamorous problems took most of the work. The guidance came as PDFs, web pages and other formats, so it had to be cleaned into a common shape and split into pieces the system could find reliably. And when several versions of the same procedure existed, the assistant sometimes reached for an old one, so we taught it to prefer the newest.
+- **Ingestion.** The documents came in several formats. We converted some PDFs to Markdown and tested fixed-size chunks against chunks that follow section boundaries, which keep a heading with the text under it.
+- **Versions.** Several versions of the same SOP existed, and the assistant could return outdated guidance. We changed retrieval to prioritize newer documents using timestamps. This is imperfect, because a timestamp shows when a file was updated, not which policy applied on the claim's date of service. Explicit effective dates and supersession rules would handle it properly.
+- **Decision authority.** The assistant retrieves and explains guidance. Analysts make the claim decision, and complex cases still go to senior review.
 
-One line I held on purpose: the assistant never decides a claim. It finds and explains the evidence. People make the call, and harder cases still go to senior reviewers, because coverage and payment decisions affect real lives.
+We then reused the same retrieval and answer capability for appeals, so representatives could answer questions during a call or chat with the supporting source shown.
 
-Once it worked for claims, we pointed the same capability at appeals, so representatives could answer questions mid-conversation with the source in hand.
+## Results
 
-## What changed
+- Time spent on the primary investigation step, finding and checking the applicable guidance, fell by about 80%. This is the lookup step, not the whole case. Secondary verification and senior review are unchanged, so total handling time falls by less.
+- Adoption rose by about 20% after citations were added.
+- Appeals representatives could get cited answers while the customer was still on the line.
 
-Analysts spent far less time searching and more time doing the part only a person can do, which is judging the case. On the step we set out to fix, finding and checking the guidance, time dropped by around 80%. That is one step of the job, not the whole case, so total handling time fell by less, but the biggest block of waiting and re-checking was gone.
+## Business impact
 
-Trust followed. Once answers could be checked in one click, adoption climbed by about 20%. For appeals, representatives could answer while the customer was still on the line instead of promising to call back.
+The business case was about $4M in annual savings across claims and appeals, based on the time returned to analysts and representatives.
 
-## What it was worth
+## What I would change
 
-The business case was simple: give hours back to people who handle a lot of cases. The program was built around roughly $4M a year in savings across claims and appeals, with the time returned to analysts and representatives as the main source.
-
-## What I took from it
-
-- **Trust is a feature.** People won't use a fast answer they can't check.
-- **Let the AI do the homework and people do the deciding.** The boundary was a design choice, not a limitation.
-- **Measure the whole journey from day one.** Next time I'd start tracking the full workflow earlier, and build in policy effective dates from the start, so the results are even easier to prove.
+I would include citations and policy effective dates in the first version. Analysts needed the citations to trust the output, and retrieval needed the dates to return the right version of each procedure. I would also measure the full workflow from the start, with a baseline and a comparison group, so the savings can be attributed to the product with more confidence.
