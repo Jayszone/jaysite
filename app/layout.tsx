@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/eb-garamond";
 import "@fontsource-variable/eb-garamond/wght-italic.css";
 import "@fontsource-variable/inter";
+import "@fontsource/patrick-hand";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";

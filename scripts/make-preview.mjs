@@ -13,7 +13,7 @@ const pages = walk(OUT).filter((f) => f.endsWith("index.html") && !/_not-found|4
 const cssFile = walk(OUT + "/_next/static/chunks").find((f) => f.endsWith(".css"));
 const css = fs.readFileSync(cssFile, "utf8").replace(/@font-face\s*\{[^}]*\}/g, "");
 const THEMES = JSON.parse(fs.readFileSync("content/themes.json", "utf8")).map((t) => t.name);
-const fonts = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=Inter:wght@400..600&display=swap">';
+const fonts = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=Inter:wght@400..600&family=Patrick+Hand&display=swap">';
 
 const shim = `<script>(function(){var r=document.documentElement,T=${JSON.stringify(THEMES)};
 function apply(n){var run=function(){r.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}};
