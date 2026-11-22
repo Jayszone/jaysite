@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <header className="hdr">
       <div className="col hdr-in">
-        <Link href="/" className="mark" aria-label="Jay Naik, home">
+        <Link href="/" className="mark" aria-label="JN, Jay Naik home">
           <svg viewBox="0 0 58 58" aria-hidden="true"><ellipse cx="29" cy="29" rx="27" ry="24" /><path d="M10 48c10 4 28 4 38 0" /><text x="29" y="35" textAnchor="middle">JN</text></svg>
         </Link>
         <nav aria-label="Primary">

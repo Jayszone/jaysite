@@ -30,3 +30,10 @@ Anything marked **Placeholder** shows a visible badge. Remove `placeholder: true
 
 ## Behaviour
 Server-rendered, readable without JS. Theme toggle cycles light → olive → ember and is stored in `localStorage`. Reduced-motion disables transitions, the collage drift and the progress bar. Collage parallax and reading-progress use CSS scroll-driven animations (progressive: static where unsupported).
+
+## Shared Discovery (interactive case study)
+`/work/shared-discovery` is a custom page, not MDX. Code: `components/sd/` (chapters, prototype, thumbnails, `sd.css`), data and rules: `lib/sd/data.ts` and `lib/sd/engine.ts`.
+- All people, circles, videos and numbers are fictional. Thumbnails are drawn in code (`Thumb.tsx`), so there are no image assets or licences to track.
+- Recommendations come from a transparent, deterministic rule set (`engine.ts`): slots are split between *your interests*, *the circle's interests* and *serendipity* (always next to something you like, and never fewer than two familiar videos).
+- Add a video in `VIDEOS`, a person in `PEOPLE`, or a circle in `CIRCLES`; every chapter picks it up.
+- The hosted preview is a static export, so the interactions only run locally (`npm run dev`).

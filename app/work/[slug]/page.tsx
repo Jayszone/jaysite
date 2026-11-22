@@ -3,7 +3,11 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Frame from "@/components/Frame";
 import Mdx from "@/components/Mdx";
+import SharedDiscoveryCaseStudy from "@/components/sd/CaseStudy";
 import { getProject, getProjects } from "@/lib/content";
+
+// Projects with a fully custom, interactive page.
+const CUSTOM: Record<string, () => React.ReactElement> = { "shared-discovery": SharedDiscoveryCaseStudy };
 
 export const dynamicParams = false;
 export function generateStaticParams() { return getProjects().map((p) => ({ slug: p.slug })); }
@@ -15,6 +19,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function Project({ params }: { params: Promise<{ slug: string }> }) {
   const p = getProject((await params).slug);
   if (!p) notFound();
+  const Custom = CUSTOM[p.slug];
+  if (Custom) return <Custom />;
   const all = getProjects(); const next = all[(all.findIndex((x) => x.slug === p.slug) + 1) % all.length];
   return (
     <div className="col" style={p.accent ? ({ ["--ac" as string]: p.accent } as React.CSSProperties) : undefined}>
