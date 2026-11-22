@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import ChannelPic from "./ChannelPic";
+import channels from "@/lib/sd/channels.json";
 import Thumb from "./Thumb";
 import Portrait from "./Portrait";
 import { Icon } from "./Fig";
@@ -27,11 +29,12 @@ export function Avatar({ name, hue, className = "" }: { name: string; hue: numbe
   return <span className={`ui-av ${p ? "has-pic" : ""} ${className}`} style={{ ["--h" as string]: hue }} aria-hidden="true">{p ? <Portrait id={p.id} /> : name[0]}</span>;
 }
 
-/** Channel avatar: a monogram (the official avatar needs the Data API). */
+/** Channel avatar: the channel's real profile picture when lib/sd/channels.json has it, else a monogram. */
 export function ChannelAv({ name }: { name: string }) {
   let h = 0; for (const c of name) h = (h * 31 + c.charCodeAt(0)) % 360;
   const ini = name.replace(/[^\p{L}\p{N} ]/gu, "").split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
-  return <span className="ui-chav" style={{ ["--h" as string]: h }} aria-hidden="true">{ini}</span>;
+  const url = (channels as Record<string, string>)[name];
+  return <ChannelPic url={url} ini={ini} hue={h} />;
 }
 
 export function Chrome({ url }: { url: string }) {
