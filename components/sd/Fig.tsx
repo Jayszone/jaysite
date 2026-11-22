@@ -41,6 +41,9 @@ export const ICONS: Record<string, ReactNode> = {
   shuffle: <>{P("M3 7h3.5c3 0 4.5 2 6 5s3 5 6 5H21M3 17h3.5c1.6 0 2.7-.6 3.6-1.6M21 7h-2.5c-1.6 0-2.7.6-3.6 1.6M18 4l3 3-3 3M18 14l3 3-3 3")}</>,
   home: <>{P("M3.5 11.5L12 4l8.5 7.5M6 10v10h4.5v-6h3v6H18V10")}</>,
   out: <>{P("M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5")}</>,
+  pause: <>{P("M8 5v14M16 5v14")}</>,
+  play2: <>{P("M7 5l12 7-12 7z")}</>,
+  replay: <>{P("M4 12a8 8 0 1 0 2.6-5.9M4 4v5h5")}</>,
   scale2: <>{P("M3 12h18M7 8l-4 4 4 4M17 8l4 4-4 4")}</>,
 };
 export function Icon({ name, className = "sd-ico" }: { name: string; className?: string }) {
