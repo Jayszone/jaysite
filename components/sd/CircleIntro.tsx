@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Figure, Group, Icon, Node } from "./Fig";
+import { Figure, Group, Node } from "./Fig";
 import { Avatar } from "./AppUI";
 import { CIRCLES, TOPICS, person, topicLabel, type TopicId } from "@/lib/sd/data";
 
@@ -39,14 +39,6 @@ export default function CircleIntro() {
           </ul>
           <p className="sd-line" aria-live="polite">{sel ? `${person(sel).name} contributes ${Object.keys(person(sel).interests).filter((k) => (person(sel).interests[k as TopicId] ?? 0) >= 0.25).map((k) => topicLabel(k as TopicId).toLowerCase()).join(", ")}. Nobody sees a list of what ${person(sel).name} watched.` : "Select a member to see which subjects they add. The pool only shows subjects, never people's histories."}</p>
         </Group>
-        <div className="sd-two">
-          <Group label="A circle has" accent>
-            <ul className="sd-facts">{["A name and a small, fixed set of people", "A shared pool of subjects", "A way to leave at any time"].map((t) => <li key={t}><Icon name="check" />{t}</li>)}</ul>
-          </Group>
-          <Group label="A circle does not have">
-            <ul className="sd-facts is-off">{["Follower or like counts", "A timeline of what friends watched", "Messages, posts or rankings"].map((t) => <li key={t}><Icon name="x" />{t}</li>)}</ul>
-          </Group>
-        </div>
       </div>
     </Figure>
   );

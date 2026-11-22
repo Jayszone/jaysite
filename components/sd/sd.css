@@ -260,6 +260,20 @@ button.sd-node:focus-visible { outline-offset: 4px; }
 .sd-iso .sd-row3 { gap: .4rem; flex-wrap: nowrap; }
 .sd-iso .sd-nl { font-size: .625rem; letter-spacing: .04em; }
 
+/* ---------- Venn: separate worlds ---------- */
+.sd-venn { display: block; width: min(100%, 36rem); margin: 0 auto; height: auto; }
+.v-c circle { fill: color-mix(in srgb, var(--sd-ac) 9%, transparent); stroke: color-mix(in srgb, var(--sd-ac) 55%, transparent); stroke-width: 1.5; }
+.v-n text { font-family: var(--sd-mono); font-size: 15px; letter-spacing: .08em; text-transform: uppercase; fill: var(--fg); text-anchor: middle; }
+.v-m circle { fill: var(--sd-ac); } .v-m text { fill: var(--bg); font-family: var(--sans); font-size: 14px; font-weight: 600; text-anchor: middle; }
+.sd-venn-list { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; margin-top: 1.6rem; border-top: 1px solid var(--sd-line); padding-top: 1.4rem; }
+.sd-venn-who, .sd-venn-bridges { display: grid; gap: .7rem; font-size: 1rem; line-height: 1.4; }
+.sd-venn-who b, .sd-venn-bridges b { display: block; font-weight: 600; }
+.sd-venn-who li { color: var(--mute); } .sd-venn-who li b { color: var(--fg); }
+.sd-venn-bridges { counter-reset: br; } .sd-venn-bridges li { counter-increment: br; display: grid; grid-template-columns: 1.6rem 1fr; column-gap: .6rem; }
+.sd-venn-bridges li::before { content: counter(br); grid-row: span 2; width: 1.4rem; height: 1.4rem; border-radius: 50%; background: var(--sd-ac); color: var(--bg); font-family: var(--sans); font-size: .75rem; font-weight: 600; display: grid; place-items: center; margin-top: .15rem; }
+.sd-venn-bridges li > * { grid-column: 2; }
+@media (max-width: 760px) { .sd-venn-list { grid-template-columns: 1fr; } }
+
 /* ---------- Circle ---------- */
 .sd-stack-fig { display: grid; gap: 2.2rem; }
 .sd-members { display: flex; flex-wrap: wrap; gap: 1rem 1.2rem; justify-content: center; }
