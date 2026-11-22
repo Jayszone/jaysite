@@ -3,6 +3,7 @@ import "./sd.css";
 import HeroMock from "./HeroMock";
 import IsolatedViz from "./IsolatedViz";
 import Prototype from "./Prototype";
+import SurpriseDemo from "./SurpriseDemo";
 import CircleIntro from "./CircleIntro";
 import PersonaCompare from "./PersonaCompare";
 import MixViz from "./MixViz";
@@ -12,8 +13,8 @@ import ExperimentDesign from "./ExperimentDesign";
 import { getProject } from "@/lib/content";
 
 const SECTIONS = [
-  ["separate-worlds", "Separate worlds"], ["the-idea", "The product idea"], ["the-circle", "The circle"], ["the-feed", "The shared feed"],
-  ["different-feeds", "Different feeds"], ["the-logic", "How it works"], ["privacy", "Privacy by design"], ["decisions", "Decisions"], ["experiment", "The experiment"],
+  ["separate-worlds", "Separate worlds"], ["the-idea", "The product idea"], ["the-circle", "The circle"], ["different-feeds", "Different feeds"],
+  ["surprise", "Something unexpected"], ["the-logic", "How it works"], ["privacy", "Privacy by design"], ["decisions", "Decisions"], ["experiment", "The experiment"],
 ];
 
 const Sec = ({ id, title, children }: { id: string; title: string; children: React.ReactNode }) => (
@@ -36,7 +37,7 @@ export default function SharedDiscoveryCaseStudy() {
           </div>
           <dl className="sd-meta sd-rise" style={{ ["--i" as string]: 3 }}>
             {p && <><div><dt>Role</dt><dd>{p.role}</dd></div><div><dt>Year</dt><dd>{p.year}</dd></div><div><dt>Focus</dt><dd>{p.tags.join(" · ")}</dd></div></>}
-            <div><dt>Note</dt><dd>Not an official YouTube feature and not affiliated with YouTube. The people, circles, videos and numbers here are fictional, and the recommendations come from simple rules, not a real model.</dd></div>
+            <div><dt>Note</dt><dd>A speculative concept, not a YouTube feature and not affiliated with YouTube. The videos are real and public, shown with their own thumbnails and linked to YouTube; they belong to their creators. The people, circles and numbers are fictional, and the recommendations come from simple rules, not a real model.</dd></div>
             <div><dt>Contents</dt><dd><ul className="sd-toc">{SECTIONS.map(([id, label]) => <li key={id}><a href={`#${id}`}>{label}</a></li>)}</ul></dd></div>
           </dl>
         </section>
@@ -57,9 +58,9 @@ export default function SharedDiscoveryCaseStudy() {
         <Sec id="the-idea" title="A browsing mode, not a new app">
           <div className="sd-prose">
             <p>Shared Discovery sits in the Home feed, next to the way you already browse. You start in Personal. Switching is a deliberate choice, and it is explained before anything happens.</p>
-            <p>Try it. The moment you enter Shared Discovery is the whole idea in one step: the same person, a different set of recommendations.</p>
+            <p>Try it. Switch to Shared Discovery and watch the same person get a different Home feed. Open a video, ask for more or less of it, filter by subject, and switch back whenever you like.</p>
           </div>
-          <div className="sd-wide sd-figgap"><Prototype name="mode switch demo" tryThis={["Tap Shared Discovery.", "Read what it explains, pick a circle and enter.", "Notice the mode label, accent colour and feed change."]} /></div>
+          <div className="sd-wide sd-figgap sd-hero-demo"><Prototype name="mode switch demo" tryThis={["Tap Shared Discovery.", "Read what it explains, pick a circle and enter.", "Open a video, or use ⋯ for More like this and Not interested.", "Switch back to Personal at any time."]} /></div>
         </Sec>
 
         <Sec id="the-circle" title="A circle, not a network">
@@ -69,18 +70,18 @@ export default function SharedDiscoveryCaseStudy() {
           <CircleIntro />
         </Sec>
 
-        <Sec id="the-feed" title="Explore the shared feed">
-          <div className="sd-prose">
-            <p>This is a working simulation, running entirely in your browser. Your choices change what appears next. Open a video, say you want more of it or none of it, ask to be surprised, and switch back whenever you like.</p>
-          </div>
-          <div className="sd-wide sd-figgap"><Prototype name="shared feed demo" tryThis={["Enter Shared Discovery, then scroll.", "Open a video and read why it appeared.", "Use ⋯ for More like this or Not interested.", "Press Surprise me for an unfamiliar direction.", "Switch back to Personal at any time."]} /></div>
-        </Sec>
-
         <Sec id="different-feeds" title="One circle, different feeds">
           <div className="sd-prose">
             <p>The defining idea: friends shape each other's recommendations without receiving the same feed. Pick a member and compare. The videos, the reasons and the mix are different for each person.</p>
           </div>
           <PersonaCompare />
+        </Sec>
+
+        <Sec id="surprise" title="Something unexpected">
+          <div className="sd-prose">
+            <p>Serendipity is a control here, not an accident. Press Surprise me and the feed reaches one step past what you usually watch, always next to something you already like.</p>
+          </div>
+          <SurpriseDemo />
         </Sec>
 
         <Sec id="the-logic" title="How collective recommendations work">
@@ -112,7 +113,7 @@ export default function SharedDiscoveryCaseStudy() {
         </Sec>
 
         <footer className="sd-foot">
-          <p className="sd-cap">Shared Discovery is a personal product design experiment. All people, videos, thumbnails and numbers are fictional or illustrative. The thumbnails are drawn in code.</p>
+          <p className="sd-cap">Shared Discovery is a personal product design experiment. The people, circles and numbers are fictional or illustrative. Videos, titles, channel names and thumbnails are real and belong to their creators; thumbnails load from YouTube's own image host and every video links back to YouTube.</p>
           <p><Link href="/" className="back"><span className="sd-arrow" aria-hidden="true">←</span> Back to work</Link></p>
         </footer>
       </div>

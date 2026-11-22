@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { Figure, Node } from "./Fig";
 import Wires from "./Wires";
 import Thumb from "./Thumb";
-import { Tag, dur } from "./AppUI";
+import { Dur, Tag } from "./AppUI";
 import { topicLabel } from "@/lib/sd/data";
 import { buildFeed, familiarity, sourceShare, type Source } from "@/lib/sd/engine";
 
@@ -49,8 +49,8 @@ export default function MixViz() {
           <ol className="sd-app sd-mini-list" data-mode="shared">
             {feed.map((r) => (
               <li key={r.video.id} className="ui-row">
-                <div className="ui-thumb"><Thumb video={r.video} /><em>{dur(r.video)}</em></div>
-                <div className="ui-meta"><p className="ui-title">{r.video.title}</p><p className="ui-sub">{topicLabel(r.video.topics[0])}</p><Tag source={r.source}>{TAG[r.source]}</Tag></div>
+                <div className="ui-thumb"><Thumb video={r.video} /><Dur v={r.video} /></div>
+                <div className="ui-meta"><p className="ui-title">{r.video.title}</p><p className="ui-sub">{r.video.channel}</p><Tag source={r.source}>{TAG[r.source]}</Tag></div>
               </li>
             ))}
           </ol>

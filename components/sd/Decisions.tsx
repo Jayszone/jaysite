@@ -1,57 +1,70 @@
-import { Figure, Group, Node } from "./Fig";
-import Wires from "./Wires";
-import { Avatar } from "./AppUI";
+import { Figure, Group, Icon, Node } from "./Fig";
+import { Avatar, VCard } from "./AppUI";
 import { person } from "@/lib/sd/data";
+import { VIDEOS } from "@/lib/sd/data";
+import { SHARED_MIX, bridge, buildFeed, surprise } from "@/lib/sd/engine";
 
-// Five product decisions. Each is a short paragraph and a small node-and-wire figure.
-const av = (id: string) => <Avatar name={person(id).name} hue={person(id).hue} className="in-tile" />;
+// Five product decisions. Each is a short paragraph and a real prototype state, not a diagram.
+const feedOf = (id: string, size = 4) => buildFeed({ userId: id, circleId: "rabbit-hole", mix: SHARED_MIX, size });
 
 function DifferentFeeds() {
   return (
-    <div className="sd-stage sd-dec-row is-split">
-      <Wires wires={[{ a: "pool", b: "alex", live: true }, { a: "pool", b: "sam", live: true }]} />
-      <Node id="pool" icon="pool" label="Circle's pool" note="one shared pool" tone="soft" />
-      <div className="sd-col2">
-        <Node id="alex" label="Alex's feed" note="more AI, computing">{av("alex")}</Node>
-        <Node id="sam" label="Sam's feed" note="more cities, history">{av("sam")}</Node>
-      </div>
+    <div className="dec-two">
+      {["alex", "sam"].map((id) => (
+        <div className="sd-app dec-feed" data-mode="shared" key={id}>
+          <p className="dec-who"><Avatar name={person(id).name} hue={person(id).hue} />{person(id).name}'s Home · The Rabbit Hole</p>
+          <div className="dec-cards">{feedOf(id).slice(0, 2).map((r) => <VCard key={r.video.id} video={r.video} source={r.source} />)}</div>
+        </div>
+      ))}
     </div>
   );
 }
 function OptIn() {
   return (
-    <div className="sd-stage sd-dec-row">
-      <Wires wires={[{ a: "p", b: "s", live: true }]} />
-      <Node id="p" icon="lock" label="Personal" note="private" />
-      <span className="sd-wl">you choose</span>
-      <Node id="s" icon="people" label="Shared" note="in a circle" tone="live" />
+    <div className="sd-app dec-sheet" role="img" aria-label="The consent sheet shown before entering Shared Discovery: your activity shapes the circle, friends never see your history, you can leave any time.">
+      <p className="dec-h">Enter Shared Discovery</p>
+      <ul>
+        <li><Icon name="people" />What you explore here helps shape your circle's recommendations.</li>
+        <li><Icon name="lock" />Friends never see your searches or watch history.</li>
+        <li><Icon name="door" />Leave any time. Personal browsing stays private.</li>
+      </ul>
+      <span className="dec-go">Enter Shared Discovery</span>
     </div>
   );
 }
 function NotSocial() {
+  const r = feedOf("alex")[0];
   return (
-    <div className="sd-stage sd-dec-row is-groups">
-      <Group label="Left out"><div className="sd-row3"><Node icon="heart" label="Likes" tone="faded" /><Node icon="follow" label="Followers" tone="faded" /><Node icon="chat" label="Chat" tone="faded" /></div></Group>
-      <Group label="Kept" accent><div className="sd-row3"><Node icon="compass" label="Discovery" note="the point" tone="live" /></div></Group>
+    <div className="dec-one">
+      <div className="sd-app dec-feed"><div className="dec-cards is-one"><VCard video={r.video} /></div></div>
+      <div className="dec-acts">
+        <div><p className="sd-label">Left out</p><ul>{[["heart", "Like"], ["follow", "Follow"], ["chat", "Comment"]].map(([i, l]) => <li key={l} className="off"><Icon name={i} />{l}</li>)}</ul></div>
+        <div><p className="sd-label">Kept</p><ul><li className="on"><Icon name="plus" />More like this</li><li className="on"><Icon name="x" />Not interested</li></ul></div>
+      </div>
     </div>
   );
 }
 function NoveltyRelevance() {
+  const fam = buildFeed({ userId: "alex", circleId: null, mix: { personal: 1, group: 0, explore: 0 }, size: 1 })[0];
+  const near = surprise("alex", 0, [fam.video.id])!;
+  // The least connected video to Alex's interests, to show what a random pick would look like.
+  const far = VIDEOS.filter((v) => v.id !== fam.video.id && v.id !== near.video.id).sort((a, b) => bridge("alex", a).score - bridge("alex", b).score)[0];
+  const cols: [string, { video: typeof far }, boolean][] = [["Too familiar", fam, false], ["Next door", near, true], ["Unconnected", { video: far }, false]];
   return (
-    <div className="sd-stage sd-dec-row">
-      <Wires wires={[{ a: "n1", b: "n2" }, { a: "n2", b: "n3", live: true }, { a: "n3", b: "n4" }]} />
-      <Node id="n1" icon="user" label="Familiar" note="nothing new" tone="faded" />
-      <Group label="Interesting, not random" accent>
-        <div className="sd-row3"><Node id="n2" icon="link" label="Next door" note="near a liked subject" tone="soft" /><Node id="n3" icon="spark" label="A new one" note="still connected" tone="live" /></div>
-      </Group>
-      <Node id="n4" icon="shuffle" label="Random" note="no link" tone="faded" />
+    <div className="dec-three">
+      {cols.map(([label, r, hot]) => (
+        <div key={label} className={`dec-col${hot ? " is-hot" : ""}`}>
+          <p className="sd-label">{label}</p>
+          <div className="sd-app"><div className="dec-cards is-one"><VCard video={r.video} /></div></div>
+        </div>
+      ))}
     </div>
   );
 }
 function FriendsFirst() {
   return (
     <div className="sd-stage sd-dec-row is-groups">
-      <Group label="Now · a small circle" accent><div className="sd-row3 is-tight">{["alex", "sam", "jordan", "maya", "taylor"].map((id) => <Node key={id} label={person(id).name}>{av(id)}</Node>)}</div></Group>
+      <Group label="Now · a small circle" accent><div className="sd-row3 is-tight">{["alex", "sam", "jordan", "maya", "taylor"].map((id) => <Node key={id} label={person(id).name}><Avatar name={person(id).name} hue={person(id).hue} className="in-tile" /></Node>)}</div></Group>
       <Group label="Later · public creators"><div className="sd-row3"><Node icon="people" label="Public circles" tone="faded" /><Node icon="play" label="Creators" tone="faded" /></div></Group>
     </div>
   );

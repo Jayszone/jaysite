@@ -1,20 +1,34 @@
 import type { ReactNode } from "react";
 import Thumb from "./Thumb";
 import { Icon } from "./Fig";
-import { topicLabel, type Video } from "@/lib/sd/data";
+import durations from "@/lib/sd/durations.json";
+import type { Video } from "@/lib/sd/data";
 import type { Source } from "@/lib/sd/engine";
 
-// Presentational pieces of the fictional "Watch" app, shared by the hero, the prototype and the
-// comparison views. The app is drawn in a fixed light palette (like a screenshot), so it stays
-// believable in every site theme.
+// Presentational pieces of the fictional "Watch" app, shared by the hero, the demos and the
+// figures. The app is drawn in a fixed light palette, like a screenshot, so it reads the same in
+// every site theme. The videos in it are real; the app, people and circles are not.
 
 export const SOURCE_LABEL: Record<Source, string> = { personal: "For you", circle: "From your circle", explore: "New territory" };
 
-/** Fictional running time, e.g. 18:42, stable per video. */
-export const dur = (v: Video) => `${v.minutes}:${String((v.id.length * 7 + v.minutes * 13) % 60).padStart(2, "0")}`;
+/** Real running time, only when lib/sd/durations.json has it (see scripts/fetch-video-durations.mjs). */
+export function dur(v: Pick<Video, "id">): string | null {
+  const s = (durations as Record<string, number>)[v.id];
+  if (!s) return null;
+  const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = String(s % 60).padStart(2, "0");
+  return h ? `${h}:${String(m).padStart(2, "0")}:${sec}` : `${m}:${sec}`;
+}
+export const Dur = ({ v }: { v: Pick<Video, "id"> }) => { const d = dur(v); return d ? <em>{d}</em> : null; };
 
 export function Avatar({ name, hue, className = "" }: { name: string; hue: number; className?: string }) {
   return <span className={`ui-av ${className}`} style={{ ["--h" as string]: hue }} aria-hidden="true">{name[0]}</span>;
+}
+
+/** Channel avatar: a monogram (the official avatar needs the Data API). */
+export function ChannelAv({ name }: { name: string }) {
+  let h = 0; for (const c of name) h = (h * 31 + c.charCodeAt(0)) % 360;
+  const ini = name.replace(/[^\p{L}\p{N} ]/gu, "").split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+  return <span className="ui-chav" style={{ ["--h" as string]: h }} aria-hidden="true">{ini}</span>;
 }
 
 export function Chrome({ url }: { url: string }) {
@@ -34,16 +48,18 @@ export function Tag({ source, children }: { source: Source; children?: ReactNode
   return <p className={`ui-tag s-${source}`}>{children ?? SOURCE_LABEL[source]}</p>;
 }
 
-/** A static video card: title card thumbnail, running time, title, subject line, optional source tag. */
-export function VCard({ video, source, tag, extra }: { video: Video; source?: Source; tag?: ReactNode; extra?: ReactNode }) {
+/** A static video card in the app's feed style. */
+export function VCard({ video, source, tag }: { video: Video; source?: Source; tag?: ReactNode }) {
   return (
     <article className="ui-card">
-      <div className="ui-thumb"><Thumb video={video} /><em>{dur(video)}</em></div>
-      <div className="ui-meta">
-        <p className="ui-title">{video.title}</p>
-        <p className="ui-sub">{video.kind} · {topicLabel(video.topics[0])}</p>
-        {source && <Tag source={source}>{tag}</Tag>}
-        {extra}
+      <div className="ui-thumb"><Thumb video={video} /><Dur v={video} /></div>
+      <div className="ui-body">
+        <ChannelAv name={video.channel} />
+        <div className="ui-meta">
+          <p className="ui-title">{video.title}</p>
+          <p className="ui-sub">{video.channel}</p>
+          {source && <Tag source={source}>{tag}</Tag>}
+        </div>
       </div>
     </article>
   );

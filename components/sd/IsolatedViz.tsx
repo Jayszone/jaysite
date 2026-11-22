@@ -15,9 +15,6 @@ const LINKS: { a: string; b: string; text: string }[] = [
   { a: "design", b: "arch", text: "Design and architecture both ask how a space should feel to the person inside it." },
   { a: "ai", b: "phil", text: "Every question about machine intelligence runs into a question about what understanding is." },
   { a: "hist", b: "tech", text: "Most technology has a history of people, accidents and trade-offs that rarely gets told." },
-  { a: "psy", b: "design", text: "Good design depends on how people actually behave, which is psychology's whole subject." },
-  { a: "urban", b: "psy", text: "A city is a very large environment for human behavior." },
-  { a: "bio", b: "arch", text: "Some of the best structures borrow from things that grew, not things that were built." },
 ];
 
 export default function IsolatedViz() {

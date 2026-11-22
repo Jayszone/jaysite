@@ -24,7 +24,7 @@ export default function HeroMock() {
         <div className="hero-chips">
           <span>All</span>
           <span className="on"><Icon name="people" />Shared · {c.name}</span>
-          <span>Architecture</span><span>Computing</span><span>Energy</span><span className="hide-sm">Documentaries</span>
+          <span>Space exploration</span><span>Ancient civilizations</span><span>Physics</span><span className="hide-sm">Philosophy</span>
         </div>
         <div className="hero-grid">
           {cards.map((r, i) => <VCard key={r.video.id} video={r.video} source={r.source} />)}
