@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
 import Thumb from "./Thumb";
+import Portrait from "./Portrait";
 import { Icon } from "./Fig";
 import durations from "@/lib/sd/durations.json";
-import type { Video } from "@/lib/sd/data";
+import { PEOPLE, type Video } from "@/lib/sd/data";
 import type { Source } from "@/lib/sd/engine";
 
 // Presentational pieces of the fictional "Watch" app, shared by the hero, the demos and the
@@ -20,8 +21,10 @@ export function dur(v: Pick<Video, "id">): string | null {
 }
 export const Dur = ({ v }: { v: Pick<Video, "id"> }) => { const d = dur(v); return d ? <em>{d}</em> : null; };
 
+/** A fictional person's illustrated portrait (falls back to the initial for anyone unknown). */
 export function Avatar({ name, hue, className = "" }: { name: string; hue: number; className?: string }) {
-  return <span className={`ui-av ${className}`} style={{ ["--h" as string]: hue }} aria-hidden="true">{name[0]}</span>;
+  const p = PEOPLE.find((x) => x.name === name);
+  return <span className={`ui-av ${p ? "has-pic" : ""} ${className}`} style={{ ["--h" as string]: hue }} aria-hidden="true">{p ? <Portrait id={p.id} /> : name[0]}</span>;
 }
 
 /** Channel avatar: a monogram (the official avatar needs the Data API). */
