@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import { Figure, Group, Icon, Node } from "./Fig";
+import { Avatar } from "./AppUI";
 import { CIRCLES, TOPICS, person, topicLabel, type TopicId } from "@/lib/sd/data";
 
 export default function CircleIntro() {
@@ -12,37 +14,40 @@ export default function CircleIntro() {
   }).filter((t) => t.w > 0.06).sort((a, b) => b.w - a.w).slice(0, 11);
   const mine = sel ? person(sel).interests : null;
   return (
-    <div className="sd-circle">
-      <div className="sd-circle-head">
-        <div><h3>{c.name}</h3><p>{c.members.length} people · Private · Invite only</p></div>
-        <p className="sd-cap">Illustrative profiles for this design experiment. No real accounts.</p>
+    <Figure caption="Illustrative profiles for this design experiment. No real accounts.">
+      <div className="sd-stack-fig">
+        <Group label={`${c.name} · ${c.members.length} people · private`} accent>
+          <ul className="sd-members" aria-label="Members of the circle">
+            {c.members.map((id) => {
+              const p = person(id);
+              return (
+                <li key={id}>
+                  <Node onClick={() => setSel(sel === id ? null : id)} pressed={sel === id} label={p.name} note={p.tagline} tone={sel === id ? "live" : ""}>
+                    <Avatar name={p.name} hue={p.hue} className="in-tile" />
+                  </Node>
+                </li>
+              );
+            })}
+          </ul>
+        </Group>
+        <Group label="What the circle is exploring">
+          <ul className="sd-pool">
+            {pool.map((t) => {
+              const on = mine && (mine[t.id as TopicId] ?? 0) >= 0.25;
+              return <li key={t.id} className={on ? "lit" : mine ? "dim" : ""} style={{ ["--w" as string]: t.w }}>{t.label}</li>;
+            })}
+          </ul>
+          <p className="sd-line" aria-live="polite">{sel ? `${person(sel).name} contributes ${Object.keys(person(sel).interests).filter((k) => (person(sel).interests[k as TopicId] ?? 0) >= 0.25).map((k) => topicLabel(k as TopicId).toLowerCase()).join(", ")}. Nobody sees a list of what ${person(sel).name} watched.` : "Select a member to see which subjects they add. The pool only shows subjects, never people's histories."}</p>
+        </Group>
+        <div className="sd-two">
+          <Group label="A circle has" accent>
+            <ul className="sd-facts">{["A name and a small, fixed set of people", "A shared pool of subjects", "A way to leave at any time"].map((t) => <li key={t}><Icon name="check" />{t}</li>)}</ul>
+          </Group>
+          <Group label="A circle does not have">
+            <ul className="sd-facts is-off">{["Follower or like counts", "A timeline of what friends watched", "Messages, posts or rankings"].map((t) => <li key={t}><Icon name="x" />{t}</li>)}</ul>
+          </Group>
+        </div>
       </div>
-      <ul className="sd-members" aria-label="Members of the circle">
-        {c.members.map((id) => {
-          const p = person(id);
-          return (
-            <li key={id}>
-              <button aria-pressed={sel === id} onClick={() => setSel(sel === id ? null : id)} style={{ ["--h" as string]: p.hue }}>
-                <span className="sd-me">{p.name[0]}</span><b>{p.name}</b><small>{p.tagline}</small>
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-      <div className="sd-pool">
-        <h4>What the circle is exploring</h4>
-        <ul>
-          {pool.map((t) => {
-            const lit = mine && (mine[t.id as TopicId] ?? 0) >= 0.25;
-            return <li key={t.id} className={lit ? "lit" : mine ? "dim" : ""} style={{ ["--w" as string]: t.w }}>{t.label}</li>;
-          })}
-        </ul>
-        <p className="sd-line" aria-live="polite">{sel ? `${person(sel).name} contributes ${Object.keys(person(sel).interests).filter((k) => (person(sel).interests[k as TopicId] ?? 0) >= 0.25).map((k) => topicLabel(k as TopicId).toLowerCase()).join(", ")}. Nobody sees a list of what ${person(sel).name} watched.` : "Select a member to see which subjects they add. The pool only shows subjects, never people's histories."}</p>
-      </div>
-      <div className="sd-isnt">
-        <div><h4>A circle has</h4><ul><li>A name and a small, fixed set of people</li><li>A shared pool of subjects</li><li>A way to leave at any time</li></ul></div>
-        <div><h4>A circle does not have</h4><ul><li>Follower or like counts</li><li>A timeline of what friends watched</li><li>Messages, posts or rankings</li></ul></div>
-      </div>
-    </div>
+    </Figure>
   );
 }

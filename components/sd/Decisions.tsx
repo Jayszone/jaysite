@@ -1,59 +1,60 @@
-import { Arrow, Box, Line, gen, paths } from "@/components/Visuals";
+import { Figure, Group, Node } from "./Fig";
+import Wires from "./Wires";
+import { Avatar } from "./AppUI";
+import { person } from "@/lib/sd/data";
 
-// Five product decisions, each with a small hand-drawn sketch and a one-line reason.
-const W = 320, H = 150;
-const Svg = ({ children, label }: { children: React.ReactNode; label: string }) => (
-  <svg className="viz sketch viz-s" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={label}>{children}</svg>
-);
+// Five product decisions. Each is a short paragraph and a small node-and-wire figure.
+const av = (id: string) => <Avatar name={person(id).name} hue={person(id).hue} className="in-tile" />;
 
 function DifferentFeeds() {
-  return (<Svg label="Two people in one circle, each with a different feed.">
-    <text x="160" y="22" className="note" style={{ textAnchor: "middle" }}>one circle</text>
-    <Box x={12} y={36} w={124} h={96} title="Alex" sub={["AI systems", "Renaissance", "engineering"]} seed={1} tone={1} />
-    <Box x={184} y={36} w={124} h={96} title="Sam" sub={["urban planning", "ancient cities", "geometry"]} seed={2} tone={1} />
-    <Line a={[140, 84]} b={[180, 84]} seed={3} dashed />
-  </Svg>);
+  return (
+    <div className="sd-stage sd-dec-row is-split">
+      <Wires wires={[{ a: "pool", b: "alex", live: true }, { a: "pool", b: "sam", live: true }]} />
+      <Node id="pool" icon="pool" label="Circle's pool" note="one shared pool" tone="soft" />
+      <div className="sd-col2">
+        <Node id="alex" label="Alex's feed" note="more AI, computing">{av("alex")}</Node>
+        <Node id="sam" label="Sam's feed" note="more cities, history">{av("sam")}</Node>
+      </div>
+    </div>
+  );
 }
 function OptIn() {
-  return (<Svg label="A deliberate step from Personal to Shared Discovery.">
-    <Box x={10} y={44} w={104} h={62} title="Personal" sub="private" seed={4} tone={0} />
-    <Arrow a={[120, 75]} b={[196, 75]} seed={5} />
-    <text x="158" y="62" className="note" style={{ textAnchor: "middle" }}>you choose</text>
-    <Box x={202} y={44} w={108} h={62} title="Shared" sub="in a circle" seed={6} tone={2} />
-  </Svg>);
+  return (
+    <div className="sd-stage sd-dec-row">
+      <Wires wires={[{ a: "p", b: "s", live: true }]} />
+      <Node id="p" icon="lock" label="Personal" note="private" />
+      <span className="sd-wl">you choose</span>
+      <Node id="s" icon="people" label="Shared" note="in a circle" tone="live" />
+    </div>
+  );
 }
 function NotSocial() {
-  return (<Svg label="Likes, followers and chat are left out; discovery stays.">
-    {["Likes", "Followers", "Chat"].map((t, i) => (<g key={t}>
-      <Box x={10} y={14 + i * 42} w={96} h={34} title={t} seed={7 + i} tone={0} dashed />
-      <Line a={[16, 44 + i * 42]} b={[100, 18 + i * 42]} seed={20 + i} />
-    </g>))}
-    <Arrow a={[118, 75]} b={[190, 75]} seed={30} />
-    <Box x={196} y={44} w={114} h={62} title="Discovery" sub="the point" seed={31} tone={2} />
-  </Svg>);
+  return (
+    <div className="sd-stage sd-dec-row is-groups">
+      <Group label="Left out"><div className="sd-row3"><Node icon="heart" label="Likes" tone="faded" /><Node icon="follow" label="Followers" tone="faded" /><Node icon="chat" label="Chat" tone="faded" /></div></Group>
+      <Group label="Kept" accent><div className="sd-row3"><Node icon="compass" label="Discovery" note="the point" tone="live" /></div></Group>
+    </div>
+  );
 }
 function NoveltyRelevance() {
-  return (<Svg label="A scale from familiar to unfamiliar, with the useful middle highlighted.">
-    <rect x="96" y="52" width="104" height="38" rx="6" className="bx t2" />
-    {paths(gen.rectangle(96, 52, 104, 38, { seed: 40, roughness: 1.2 }))}
-    <Line a={[16, 71]} b={[304, 71]} seed={41} />
-    <Arrow a={[290, 71]} b={[306, 71]} seed={42} />
-    <text x="16" y="110" className="sb" style={{ textAnchor: "start" }}>familiar</text>
-    <text x="304" y="110" className="sb" style={{ textAnchor: "end" }}>unfamiliar</text>
-    <text x="148" y="44" className="note" style={{ textAnchor: "middle" }}>interesting, not random</text>
-  </Svg>);
+  return (
+    <div className="sd-stage sd-dec-row">
+      <Wires wires={[{ a: "n1", b: "n2" }, { a: "n2", b: "n3", live: true }, { a: "n3", b: "n4" }]} />
+      <Node id="n1" icon="user" label="Familiar" note="nothing new" tone="faded" />
+      <Group label="Interesting, not random" accent>
+        <div className="sd-row3"><Node id="n2" icon="link" label="Next door" note="near a liked subject" tone="soft" /><Node id="n3" icon="spark" label="A new one" note="still connected" tone="live" /></div>
+      </Group>
+      <Node id="n4" icon="shuffle" label="Random" note="no link" tone="faded" />
+    </div>
+  );
 }
 function FriendsFirst() {
-  const small = Array.from({ length: 5 }, (_, i) => [74 + 34 * Math.cos((i / 5) * 6.283 - 1.2), 76 + 34 * Math.sin((i / 5) * 6.283 - 1.2)]);
-  const cloud = Array.from({ length: 26 }, (_, i) => [196 + ((i * 53) % 108), 34 + ((i * 37) % 86)]);
-  return (<Svg label="A small circle of five friends now, a large public crowd later.">
-    {paths(gen.circle(74, 76, 98, { seed: 50, roughness: 1.2 }))}
-    {small.map(([x, y], i) => <circle key={i} cx={x} cy={y} r="6" className="bx t2" />)}
-    {paths(gen.ellipse(250, 76, 128, 104, { seed: 51, roughness: 1.3, strokeLineDash: [6, 6] }))}
-    {cloud.map(([x, y], i) => <circle key={i} cx={x} cy={y} r="2.6" className="bx" style={{ fillOpacity: 0.7 }} />)}
-    <text x="74" y="140" className="note" style={{ textAnchor: "middle" }}>start here</text>
-    <text x="250" y="140" className="note" style={{ textAnchor: "middle" }}>maybe later</text>
-  </Svg>);
+  return (
+    <div className="sd-stage sd-dec-row is-groups">
+      <Group label="Now · a small circle" accent><div className="sd-row3 is-tight">{["alex", "sam", "jordan", "maya", "taylor"].map((id) => <Node key={id} label={person(id).name}>{av(id)}</Node>)}</div></Group>
+      <Group label="Later · public creators"><div className="sd-row3"><Node icon="people" label="Public circles" tone="faded" /><Node icon="play" label="Creators" tone="faded" /></div></Group>
+    </div>
+  );
 }
 
 const ITEMS = [
@@ -69,8 +70,8 @@ export default function Decisions() {
     <ol className="sd-decisions">
       {ITEMS.map(({ n, why, Art }, i) => (
         <li key={n}>
-          <div className="sd-dec-art"><Art /></div>
-          <div className="sd-dec-text"><p className="sd-kicker">Decision {i + 1}</p><h3>{n}</h3><p>{why}</p></div>
+          <div className="sd-dec-text"><p className="sd-label">Decision {i + 1}</p><div><h3>{n}</h3><p>{why}</p></div></div>
+          <Figure><Art /></Figure>
         </li>
       ))}
     </ol>

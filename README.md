@@ -33,7 +33,8 @@ Server-rendered, readable without JS. Theme toggle cycles light → olive → em
 
 ## Shared Discovery (interactive case study)
 `/work/shared-discovery` is a custom page, not MDX. Code: `components/sd/` (chapters, prototype, thumbnails, `sd.css`), data and rules: `lib/sd/data.ts` and `lib/sd/engine.ts`.
-- All people, circles, videos and numbers are fictional. Thumbnails are drawn in code (`Thumb.tsx`), so there are no image assets or licences to track.
+- All people, circles, videos and numbers are fictional. Thumbnails are flat title cards drawn in code (`Thumb.tsx`), so there are no image assets or licences to track.
+- Visual system: diagrams share one kit (`Fig.tsx` tiles, frames, dot-grid canvas; `Wires.tsx` measured dotted wires) coloured from the site theme (`--pop-2` accent). The fictional "Watch" app (`AppUI.tsx`, `Prototype.tsx`, `HeroMock.tsx`) uses a fixed light palette like a screenshot.
 - Recommendations come from a transparent, deterministic rule set (`engine.ts`): slots are split between *your interests*, *the circle's interests* and *serendipity* (always next to something you like, and never fewer than two familiar videos).
 - Add a video in `VIDEOS`, a person in `PEOPLE`, or a circle in `CIRCLES`; every chapter picks it up.
 - The hosted preview is a static export, so the interactions only run locally (`npm run dev`).

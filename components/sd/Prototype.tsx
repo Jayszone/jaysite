@@ -1,22 +1,13 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Thumb from "./Thumb";
+import { Avatar, Brand, Chrome, SOURCE_LABEL, Tag, dur } from "./AppUI";
+import { Icon } from "./Fig";
 import { CIRCLES, circle, person, topicLabel, type TopicId } from "@/lib/sd/data";
 import { NO_FEEDBACK, PERSONAL_MIX, SHARED_MIX, buildFeed, sourceShare, surprise, type Feedback, type Rec, type Source } from "@/lib/sd/engine";
 
 type Mode = "personal" | "shared";
-const SOURCE_LABEL: Record<Source, string> = { personal: "For you", circle: "From your circle", explore: "New territory" };
 const ORDER: Source[] = ["personal", "circle", "explore"];
-
-const Icon = {
-  lock: <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.6" /><path d="M5.2 7V5a2.8 2.8 0 0 1 5.6 0v2" /></svg>,
-  people: <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="5.6" cy="5.6" r="2.2" /><circle cx="11" cy="6.4" r="1.7" /><path d="M1.8 13c0-2.2 1.7-3.6 3.8-3.6s3.8 1.4 3.8 3.6M10 9.6c2 0 3.7 1 4 3" /></svg>,
-  spark: <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5l1.5 4.2 4.2 1.5-4.2 1.5L8 12.9 6.5 8.7 2.3 7.2l4.2-1.5z" /></svg>,
-  back: <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" /></svg>,
-  more: <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="3.5" cy="8" r="1.1" /><circle cx="8" cy="8" r="1.1" /><circle cx="12.5" cy="8" r="1.1" /></svg>,
-  plus: <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" /></svg>,
-  x: <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" /></svg>,
-};
 
 export default function Prototype({ persona = "alex", panel = true, tryThis, name = "prototype" }: { persona?: string; panel?: boolean; tryThis?: string[]; name?: string }) {
   const me = person(persona);
@@ -34,6 +25,7 @@ export default function Prototype({ persona = "alex", panel = true, tryThis, nam
   const [flip, setFlip] = useState(0);
   const feedRef = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
+  const backBtn = useRef<HTMLButtonElement>(null);
   const enterBtn = useRef<HTMLButtonElement>(null);
   const prevIds = useRef<string[]>([]);
 
@@ -41,6 +33,7 @@ export default function Prototype({ persona = "alex", panel = true, tryThis, nam
   const note = (line: string) => setLog((l) => [line, ...l].slice(0, 5));
   useEffect(() => { if (!toast) return; const t = setTimeout(() => setToast(null), toast.undo ? 6000 : 3200); return () => clearTimeout(t); }, [toast]);
   useEffect(() => { if (sheet) enterBtn.current?.focus(); }, [sheet]);
+  useEffect(() => { if (detail) backBtn.current?.focus(); }, [detail]);
   useEffect(() => {
     const k = (e: KeyboardEvent) => { if (e.key === "Escape") { if (sheet) { setSheet(false); trigger.current?.focus(); } else if (detail) setDetail(null); } };
     window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k);
@@ -86,91 +79,102 @@ export default function Prototype({ persona = "alex", panel = true, tryThis, nam
     feedRef.current?.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   };
 
+  const why = (r: Rec) => (
+    <div className="app-why">
+      <b>Why you're seeing this</b>
+      <div className="app-why-row">
+        {r.source === "circle" ? <span className="ui-stack" aria-hidden="true">{circle(circleId).members.filter((m) => m !== persona).slice(0, 3).map((m) => <Avatar key={m} name={person(m).name} hue={person(m).hue} />)}</span>
+          : r.source === "explore" ? <span className="ui-ico-bubble" aria-hidden="true"><Icon name="spark" /></span>
+          : <Avatar name={me.name} hue={me.hue} />}
+        <p>{r.reason}</p>
+      </div>
+    </div>
+  );
+
   return (
     <div className={`sd-proto${panel ? " has-panel" : ""}`}>
-      <div className="sd-phone" data-mode={mode} role="group" aria-label={`Shared Discovery prototype, viewing as ${me.name}`}>
-        <div className="sd-bar" aria-hidden="true" />
-        <header className="sd-top">
-          <span className="sd-brand"><i aria-hidden="true" />Watch</span>
-          <span className="sd-chip" data-mode={mode} aria-live="polite">
-            {shared ? Icon.people : Icon.lock}
-            <span className="lbl">{shared ? <>Shared Discovery<small>{circle(circleId).name} · {circle(circleId).members.length}</small></> : <>Personal<small>Private to you</small></>}</span>
-          </span>
-          <span className="sd-me" style={{ ["--h" as string]: me.hue }} title={`Viewing as ${me.name}`}>{me.name[0]}</span>
+      <div className="sd-app" data-mode={mode} role="group" aria-label={`Shared Discovery prototype, viewing as ${me.name}`}>
+        <Chrome url="watch.example/home" />
+        <header className="app-top">
+          <Brand />
+          <span className="app-search" aria-hidden="true"><Icon name="search" />Search</span>
+          <Avatar name={me.name} hue={me.hue} />
         </header>
-        <div className="sd-seg" role="group" aria-label="Discovery mode">
-          <button ref={trigger} aria-pressed={!shared} onClick={() => chooseMode("personal")}>Personal</button>
-          <button aria-pressed={shared} onClick={() => chooseMode("shared")}>Shared Discovery</button>
-        </div>
-        {shared && (
-          <div className="sd-actions">
-            <button className="sd-surprise" onClick={surpriseMe}>{Icon.spark}Surprise me</button>
-            <span>Your activity here shapes the circle's recommendations.</span>
+        <div className="app-modes">
+          <div className="app-seg" role="group" aria-label="Discovery mode">
+            <button ref={trigger} aria-pressed={!shared} onClick={() => chooseMode("personal")}><Icon name="lock" />Personal</button>
+            <button aria-pressed={shared} onClick={() => chooseMode("shared")}><Icon name="people" />Shared Discovery</button>
           </div>
-        )}
-        <div className="sd-feed" ref={feedRef} key={flip} tabIndex={-1}>
+          <span className="app-chip" data-mode={mode} aria-live="polite">
+            {shared ? <>{circle(circleId).name}<small>{circle(circleId).members.length} people</small></> : <>Private to you</>}
+          </span>
+          {shared && <button className="app-surprise" onClick={surpriseMe}><Icon name="spark" />Surprise me</button>}
+        </div>
+        <div className="app-feed" ref={feedRef} key={flip} tabIndex={-1}>
           {feed.map((r, i) => (
-            <article className={`sd-card${r.surprise ? " is-surprise" : ""}${fresh.has(r.video.id) && flip > 0 ? " is-new" : ""}`} key={r.video.id} style={{ ["--i" as string]: Math.min(i, 8) }}>
-              <button className="sd-open" onClick={() => setDetail(r)} tabIndex={-1} aria-hidden="true">
-                <span className="sd-thumb"><Thumb topic={r.video.topics[0]} variant={r.video.id.length} /><em>{r.video.minutes} min</em></span>
+            <article className={`ui-card app-card${r.surprise ? " is-surprise" : ""}${fresh.has(r.video.id) && flip > 0 ? " is-new" : ""}`} key={r.video.id} style={{ ["--i" as string]: Math.min(i, 8) }}>
+              <button className="app-open" onClick={() => setDetail(r)} tabIndex={-1} aria-hidden="true">
+                <span className="ui-thumb"><Thumb video={r.video} /><em>{dur(r.video)}</em></span>
               </button>
-              <div className="sd-meta">
+              <div className="ui-meta app-meta">
                 <div>
-                  <button className="sd-title" onClick={() => setDetail(r)}>{r.video.title}</button>
-                  <p>{r.video.kind} · {topicLabel(r.video.topics[0])}</p>
-                  {(shared || r.source === "explore") && <p className={`sd-src s-${r.source}`}>{r.surprise ? "Surprise" : SOURCE_LABEL[r.source]}</p>}
+                  <button className="app-title" onClick={() => setDetail(r)}>{r.video.title}</button>
+                  <p className="ui-sub">{r.video.kind} · {topicLabel(r.video.topics[0])}</p>
+                  {(shared || r.source === "explore") && <Tag source={r.source}>{r.surprise ? "Surprise" : SOURCE_LABEL[r.source]}</Tag>}
                 </div>
-                <button className="sd-more" aria-expanded={menu === r.video.id} aria-label={`More options for ${r.video.title}`} onClick={() => setMenu(menu === r.video.id ? null : r.video.id)}>{Icon.more}</button>
+                <button className="app-more" aria-expanded={menu === r.video.id} aria-label={`More options for ${r.video.title}`} onClick={() => setMenu(menu === r.video.id ? null : r.video.id)}><Icon name="more" /></button>
               </div>
               {menu === r.video.id && (
-                <div className="sd-menu" role="group" aria-label="Feedback">
-                  <button onClick={() => more(r)}>{Icon.plus}More like this</button>
-                  <button onClick={() => hide(r)}>{Icon.x}Not interested</button>
+                <div className="app-menu" role="group" aria-label="Feedback">
+                  <button onClick={() => more(r)}><Icon name="plus" />More like this</button>
+                  <button onClick={() => hide(r)}><Icon name="x" />Not interested</button>
                 </div>
               )}
             </article>
           ))}
-          {feed.length === 0 && <p className="sd-empty">You've cleared this feed. Switch modes to start again.</p>}
+          {feed.length === 0 && <p className="app-empty">You've cleared this feed. Switch modes to start again.</p>}
         </div>
 
         {detail && (
-          <div className="sd-detail" role="dialog" aria-label={detail.video.title}>
-            <button className="sd-back" onClick={() => setDetail(null)}>{Icon.back}Back to feed</button>
-            <div className="sd-hero"><Thumb topic={detail.video.topics[0]} variant={detail.video.id.length} /></div>
-            <h3>{detail.video.title}</h3>
-            <p className="sd-sub">{detail.video.kind} · {detail.video.minutes} min · Fictional video</p>
-            <p>{detail.video.blurb}</p>
-            <div className="sd-why"><b>Why you're seeing this</b>{detail.reason}</div>
-            <div className="sd-row">
-              <button onClick={() => { more(detail); }}>{Icon.plus}More like this</button>
-              <button onClick={() => hide(detail)}>{Icon.x}Not interested</button>
+          <div className="app-scrim" onClick={() => setDetail(null)}>
+            <div className="app-pop app-detail" role="dialog" aria-label={detail.video.title} onClick={(e) => e.stopPropagation()}>
+              <button ref={backBtn} className="app-back" onClick={() => setDetail(null)}><Icon name="back" />Back to feed</button>
+              <div className="ui-thumb app-hero"><Thumb video={detail.video} /><em>{dur(detail.video)}</em></div>
+              <h3>{detail.video.title}</h3>
+              <p className="ui-sub">{detail.video.kind} · {detail.video.minutes} min · Fictional video</p>
+              <p className="app-blurb">{detail.video.blurb}</p>
+              {why(detail)}
+              <div className="app-row">
+                <button onClick={() => { more(detail); }}><Icon name="plus" />More like this</button>
+                <button onClick={() => hide(detail)}><Icon name="x" />Not interested</button>
+              </div>
             </div>
           </div>
         )}
 
         {sheet && (
-          <div className="sd-scrim" onClick={() => { setSheet(false); trigger.current?.focus(); }}>
-            <div className="sd-sheet" role="dialog" aria-labelledby="sd-sheet-h" onClick={(e) => e.stopPropagation()}>
+          <div className="app-scrim" onClick={() => { setSheet(false); trigger.current?.focus(); }}>
+            <div className="app-pop app-sheet" role="dialog" aria-labelledby="sd-sheet-h" onClick={(e) => e.stopPropagation()}>
               <h3 id="sd-sheet-h">Enter Shared Discovery</h3>
               <ul>
-                <li>{Icon.people}<span>What you explore in this mode helps shape your circle's recommendations.</span></li>
-                <li>{Icon.lock}<span>Friends never see your searches or watch history.</span></li>
-                <li>{Icon.back}<span>Leave any time. Personal browsing stays private.</span></li>
+                <li><Icon name="people" /><span>What you explore in this mode helps shape your circle's recommendations.</span></li>
+                <li><Icon name="lock" /><span>Friends never see your searches or watch history.</span></li>
+                <li><Icon name="door" /><span>Leave any time. Personal browsing stays private.</span></li>
               </ul>
-              <div className="sd-circles" role="radiogroup" aria-label="Choose a private circle">
+              <div className="app-circles" role="radiogroup" aria-label="Choose a private circle">
                 {CIRCLES.map((c) => (
                   <button key={c.id} role="radio" aria-checked={pick === c.id} onClick={() => setPick(c.id)}>
                     <b>{c.name}</b><small>{c.members.length} people · Private</small>
                   </button>
                 ))}
               </div>
-              <button ref={enterBtn} className="sd-go" onClick={enter}>Enter Shared Discovery</button>
-              <button className="sd-skip" onClick={() => { setSheet(false); trigger.current?.focus(); }}>Not now</button>
+              <button ref={enterBtn} className="app-go" onClick={enter}>Enter Shared Discovery</button>
+              <button className="app-skip" onClick={() => { setSheet(false); trigger.current?.focus(); }}>Not now</button>
             </div>
           </div>
         )}
 
-        <div className="sd-toast" role="status" aria-live="polite">
+        <div className="app-toast" role="status" aria-live="polite">
           {toast && <span key={toast.text}>{toast.text}{toast.undo && <button onClick={toast.undo}>Undo</button>}</span>}
         </div>
       </div>

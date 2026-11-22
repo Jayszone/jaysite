@@ -1,28 +1,38 @@
-import { Arrow, Box } from "@/components/Visuals";
+import { Figure, Group, Node } from "./Fig";
+import Wires from "./Wires";
 import MetricCalc from "./MetricCalc";
 
 export default function ExperimentDesign() {
-  const x = (i: number) => 14 + i * 250;
   return (
-    <div className="sd-exp">
-      <div className="viz-scroll">
-        <svg className="viz sketch" viewBox="0 0 940 300" role="img" aria-label="Experiment design. Group A: personal feed, then exploration, then feedback. Group B: shared feed, then exploration, then feedback. Both feedback results are compared on the Worthwhile Novel Discovery Rate.">
-          <text x="14" y="26" className="lane" style={{ textAnchor: "start" }}>A. Personal recommendations</text>
-          {["Personal feed", "Exploration", "Feedback"].map((t, i) => <Box key={t} x={x(i)} y={40} w={200} h={64} title={t} sub={["Alex's usual topics", "watch, skip, open", "unfamiliar? worthwhile?"][i]} seed={10 + i} tone={i === 2 ? 2 : 1} />)}
-          {[0, 1].map((i) => <Arrow key={i} a={[x(i) + 203, 72]} b={[x(i + 1) - 4, 72]} seed={20 + i * 4} />)}
-          <text x="14" y="166" className="lane" style={{ textAnchor: "start" }}>B. Recommendations with group interests</text>
-          {["Shared feed", "Exploration", "Feedback"].map((t, i) => <Box key={t} x={x(i)} y={180} w={200} h={64} title={t} sub={["same person, plus the circle", "watch, skip, open", "unfamiliar? worthwhile?"][i]} seed={40 + i} tone={i === 2 ? 2 : 1} />)}
-          {[0, 1].map((i) => <Arrow key={i} a={[x(i) + 203, 212]} b={[x(i + 1) - 4, 212]} seed={50 + i * 4} />)}
-          <Box x={x(3) - 20} y={104} w={192} h={84} title="Compare" sub={["Worthwhile Novel", "Discovery Rate"]} seed={70} tone={0} dashed />
-          <Arrow a={[x(2) + 203, 80]} b={[x(3) - 22, 134]} seed={72} />
-          <Arrow a={[x(2) + 203, 206]} b={[x(3) - 22, 160]} seed={76} />
-        </svg>
-      </div>
+    <>
+      <Figure caption="Two groups, one question. The same person sees either their usual feed or one that includes the circle's interests.">
+        <div className="sd-stage sd-exp-flow">
+          <Wires wires={[
+            { a: "a1", b: "a2" }, { a: "a2", b: "a3" }, { a: "b1", b: "b2", live: true }, { a: "b2", b: "b3", live: true },
+            { a: "a3", b: "cmp", live: true }, { a: "b3", b: "cmp", live: true },
+          ]} />
+          <Group label="A · Personal recommendations" className="g-a">
+            <div className="sd-row3">
+              <Node id="a1" icon="feed" label="Personal feed" note="usual topics" />
+              <Node id="a2" icon="compass" label="Exploration" note="watch, skip, open" />
+              <Node id="a3" icon="chat" label="Feedback" note="unfamiliar? worthwhile?" />
+            </div>
+          </Group>
+          <Group label="B · With the circle's interests" accent className="g-b">
+            <div className="sd-row3">
+              <Node id="b1" icon="people" label="Shared feed" note="plus the circle" />
+              <Node id="b2" icon="compass" label="Exploration" note="watch, skip, open" />
+              <Node id="b3" icon="chat" label="Feedback" note="unfamiliar? worthwhile?" />
+            </div>
+          </Group>
+          <Node id="cmp" icon="scale" label="Compare" note="Worthwhile Novel Discovery Rate" tone="live" />
+        </div>
+      </Figure>
       <div className="sd-exp-grid">
         <div>
-          <p className="sd-kicker">Hypothesis</p>
+          <p className="sd-label">Hypothesis</p>
           <p className="sd-quote">Users will find more worthwhile and unfamiliar videos when recommendations include interests from their trusted circle.</p>
-          <p className="sd-kicker" style={{ marginTop: "1.6rem" }}>What I would ask</p>
+          <p className="sd-label" style={{ marginTop: "2rem" }}>What I would ask</p>
           <ul className="sd-qs">
             <li>Do people discover unfamiliar topics they find worthwhile?</li>
             <li>Do they understand how collective personalization works?</li>
@@ -32,11 +42,11 @@ export default function ExperimentDesign() {
           </ul>
         </div>
         <div>
-          <p className="sd-kicker">The metric</p>
+          <p className="sd-label">The metric</p>
           <p className="sd-metric"><b>Worthwhile Novel Discovery Rate</b>The share of explored recommendations that a person calls both unfamiliar and worthwhile.</p>
           <MetricCalc />
         </div>
       </div>
-    </div>
+    </>
   );
 }

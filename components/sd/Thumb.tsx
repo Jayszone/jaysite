@@ -1,10 +1,36 @@
-import { TOPICS, type TopicId } from "@/lib/sd/data";
+import { type TopicId, type Video } from "@/lib/sd/data";
 
-// Documentary-style thumbnails drawn as SVG: one scene per subject, tinted per video.
-// Original artwork generated in code, so there are no stock photos or scraped images to license.
+// Fictional video tiles: a flat subject colour, a short title card on the left and a simple flat
+// motif on the right, like a documentary thumbnail. Drawn in code, so there are no stock photos,
+// real creators or image licences to track. Duration is shown by the surrounding UI.
 
 type P = { c: [string, string, string]; v: number };
-const pts = (n: number, f: (i: number) => [number, number]) => Array.from({ length: n }, (_, i) => f(i));
+// Coordinates are rounded so server and browser print identical numbers (trig differs in the last digit).
+const r2 = (n: number) => Math.round(n * 100) / 100;
+const pts = (n: number, f: (i: number) => [number, number]) => Array.from({ length: n }, (_, i) => { const [x, y] = f(i); return [r2(x), r2(y)] as [number, number]; });
+
+// One deep, flat colour per subject. White text on each is at least 5:1.
+const FLAT: Record<TopicId, string> = {
+  ancient: "#8a4b14", architecture: "#7a3b22", nuclear: "#0b6b64", ai: "#2f3a9e", philosophy: "#54407a",
+  ocean: "#0a4c80", computing: "#6b5200", urban: "#2f5578", math: "#1d6b43", collective: "#8a4f1a",
+  psychology: "#8a2d6d", energy: "#6b6a00", nature: "#2f6b26", craft: "#3a3a46", science: "#2a4278",
+};
+const hex = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+const mix = (h: string, to: number[], t: number) => "#" + hex(h).map((c, i) => Math.round(c * (1 - t) + to[i] * t).toString(16).padStart(2, "0")).join("");
+export const subjectColor = (t: TopicId) => FLAT[t];
+
+// Short title-card text for each fictional video (two or three short lines).
+const CARD: Record<string, string[]> = {
+  "egypt-world": ["EGYPT'S", "COSMOS"], "renaissance-domes": ["BUILDING", "DOMES"], "microreactors-ai": ["MICRO-", "REACTORS"],
+  "cities-develop": ["HOW", "CITIES", "GROW"], "math-patterns": ["NATURE'S", "MATH"], "early-computers": ["EARLY", "COMPUTERS"],
+  "deep-ocean": ["DEEP", "MINDS"], ants: ["ANT", "SOCIETY"], "library-ideas": ["EVERY", "IDEA"], cathedrals: ["BUILT", "BY HAND"],
+  "future-selves": ["FUTURE", "YOU"], "llm-tour": ["INSIDE", "AN LLM"], "grid-cities": ["THE", "GRID"], "small-reactors": ["SMALL", "REACTORS"],
+  "grid-balance": ["POWER", "GRID"], "memory-rebuilt": ["MEMORY", "REBUILT"], "coral-cities": ["REEF", "CITIES"], "computing-stars": ["HUMAN", "COMPUTERS"],
+  "tree-rings": ["TREE", "RINGS"], honeycombs: ["PATTERNS", "REPEAT"], inlay: ["INLAY"], "textile-data": ["WOVEN", "DATA"],
+  "science-changed": ["SCIENCE", "CHANGED"], "thought-experiments": ["THOUGHT", "TESTS"], fungal: ["FUNGAL", "NETWORKS"], streets: ["STREETS"],
+  "roman-concrete": ["ROMAN", "CONCRETE"], geothermal: ["HEAT", "FROM", "BELOW"], "curious-machines": ["CURIOUS", "MACHINES"],
+  fission: ["FISSION", "BASICS"], swarms: ["SWARMS"], "deep-clocks": ["SLOW", "CLOCKS"],
+};
 
 const SCENES: Record<TopicId, (p: P) => React.ReactNode> = {
   ancient: ({ c }) => (<>
@@ -78,7 +104,7 @@ const SCENES: Record<TopicId, (p: P) => React.ReactNode> = {
     const seg: React.ReactNode[] = [];
     const grow = (x: number, y: number, a: number, len: number, d: number, k: string) => {
       if (d === 0) return;
-      const nx = x + Math.sin(a) * len, ny = y - Math.cos(a) * len;
+      const nx = r2(x + Math.sin(a) * len), ny = r2(y - Math.cos(a) * len);
       seg.push(<line key={k} x1={x} y1={y} x2={nx} y2={ny} stroke={c[2]} strokeWidth={d * 0.9} strokeLinecap="round" opacity=".85" />);
       grow(nx, ny, a - 0.42, len * 0.76, d - 1, k + "l"); grow(nx, ny, a + 0.38, len * 0.76, d - 1, k + "r");
     };
@@ -96,18 +122,20 @@ const SCENES: Record<TopicId, (p: P) => React.ReactNode> = {
   </>),
 };
 
-export default function Thumb({ topic, variant = 0, className = "" }: { topic: TopicId; variant?: number; className?: string }) {
-  const t = TOPICS.find((x) => x.id === topic)!;
-  const id = `tg-${topic}`;
+export default function Thumb({ video, className = "" }: { video: Pick<Video, "id" | "topics">; className?: string }) {
+  const topic = video.topics[0];
+  const v = video.id.length;
+  const bg = mix(FLAT[topic], [0, 0, 0], [0, 0.12, 0.22][v % 3]);
+  const c: [string, string, string] = [mix(bg, [0, 0, 0], 0.35), mix(bg, [255, 255, 255], 0.22), mix(bg, [255, 255, 255], 0.62)];
+  const lines = CARD[video.id] ?? ["WATCH"];
   return (
-    <svg className={className} viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true" focusable="false" style={{ filter: `hue-rotate(${(variant % 5) * 9 - 18}deg)` }}>
-      <defs>
-        <linearGradient id={id} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor={t.pal[0]} /><stop offset="1" stopColor={t.pal[1]} /></linearGradient>
-        <radialGradient id={`${id}-v`} cx=".5" cy=".4" r=".8"><stop offset=".55" stopColor="#000" stopOpacity="0" /><stop offset="1" stopColor="#000" stopOpacity=".5" /></radialGradient>
-      </defs>
-      <rect width="320" height="180" fill={`url(#${id})`} />
-      {SCENES[topic]({ c: t.pal, v: variant })}
-      <rect width="320" height="180" fill={`url(#${id}-v)`} />
+    <svg className={className} viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true" focusable="false">
+      <rect width="320" height="180" fill={bg} />
+      <g transform="translate(152 26) scale(.56)">{SCENES[topic]({ c, v })}</g>
+      <rect y="150" width="320" height="30" fill="#000" opacity=".16" />
+      <text x="16" y={Math.max(54, 100 - lines.length * 13)} fill="#fff" fontFamily="Inter Variable, Inter, system-ui, sans-serif" fontWeight="800" fontSize="23" letterSpacing="-.5">
+        {lines.map((l, i) => <tspan key={i} x="16" dy={i === 0 ? 0 : 26}>{l}</tspan>)}
+      </text>
     </svg>
   );
 }
