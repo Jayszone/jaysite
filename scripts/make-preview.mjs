@@ -10,8 +10,8 @@ const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => e.
 const pages = walk(OUT).filter((f) => f.endsWith("index.html") && !/_not-found|404/.test(f)).map((f) => path.relative(OUT, f));
 
 // CSS: inline, minus the self-hosted @font-face rules (fonts come from Google Fonts in the preview).
-const cssFile = walk(OUT + "/_next/static/chunks").find((f) => f.endsWith(".css"));
-const css = fs.readFileSync(cssFile, "utf8").replace(/@font-face\s*\{[^}]*\}/g, "");
+const cssFiles = walk(OUT + "/_next/static/chunks").filter((f) => f.endsWith(".css"));
+const css = cssFiles.map((f) => fs.readFileSync(f, "utf8")).join("\n").replace(/@font-face\s*\{[^}]*\}/g, "");
 const THEMES = JSON.parse(fs.readFileSync("content/themes.json", "utf8")).map((t) => t.name);
 const fonts = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=Inter:wght@400..600&family=Patrick+Hand&display=swap">';
 
