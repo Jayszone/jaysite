@@ -113,7 +113,6 @@ export default function SharedDiscoveryCaseStudy() {
             </div>
           </div>
 
-          <p className="end-vision">The next great thing you discover might begin with someone else&apos;s curiosity.</p>
           <p className="sd-small end-note">This independent concept uses fictional people and circles, real publicly available video content, and simulated recommendations. The metrics are proposed, not measured, and public discovery spaces are a possible later direction, not part of the first product. It is a design experiment, not a production recommendation system.</p>
         </div>
       </section>
