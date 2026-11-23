@@ -6,6 +6,13 @@ import PersonaCompare from "./PersonaCompare";
 
 // The case study in exactly three sections: The Idea, The Problem, The Experience.
 
+const STAGES: [string, string, string[]][] = [
+  ["01", "Understand the Ecosystem", ["I considered three key players: creators, viewers, and advertisers. I prioritized viewers because improving long-term viewer satisfaction was the central objective."]],
+  ["02", "Segment the Audience", ["I segmented viewing experiences by motivation (informational versus entertainment) and duration (short versus long videos), then focused on long-form informational viewing as a segment worth investigating."]],
+  ["03", "Identify the Friction", ["I mapped the viewer journey and identified three challenges: discovering relevant content, finding videos that fit the viewer's available time, and receiving worthwhile follow-up recommendations.", "I prioritized interest mismatch at the point of discovery, particularly when recommendations fail to reflect what someone wants to explore."]],
+  ["04", "Explore Solutions", ["I considered three directions: conversational AI discovery, context-aware recommendations, and recommendations influenced by trusted friends."]],
+];
+
 // The YouTube play-button mark from Simple Icons (CC0), in YouTube red. Not a redrawn logo.
 const YtMark = () => (
   <svg className="sd-yt" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
@@ -32,12 +39,29 @@ export default function SharedDiscoveryCaseStudy() {
       {/* ------------------------------------------------ The Problem */}
       <section id="problem" className="sd-problem" aria-labelledby="problem-h">
         <div className="col">
+          <p className="sd-label">The Problem</p>
           <h2 id="problem-h" className="sd-h2big">How much of YouTube are we missing?</h2>
-          <div className="pr-body">
-            <p>YouTube's recommendations learn from what we watch, helping us discover more content aligned with our interests. But our friends are exploring entirely different subjects, ideas, and perspectives that rarely appear in our feeds.</p>
-            <p className="pr-q">I started with a product sense question: <em>How might we improve long-term viewer satisfaction on YouTube?</em></p>
-            <p>This led me to explore whether bringing trusted friends' interests into our recommendations could make discovery more surprising and worthwhile.</p>
-          </div>
+          <p className="pr-lead">I began with a product sense challenge:</p>
+          <p className="pr-challenge">How might we improve long-term viewer satisfaction on YouTube?</p>
+          <p className="pr-lead pr-after">YouTube's recommendation system helps viewers navigate an enormous library of content. I wanted to explore how better discovery could make that experience more relevant, worthwhile, and satisfying over time.</p>
+
+          <ol className="pr-stages">
+            {STAGES.map(([n, h, t]) => (
+              <li key={n} className="pr-stage">
+                <span className="sd-label">{n}</span>
+                <h3>{h}</h3>
+                {t.map((x) => <p key={x}>{x}</p>)}
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div className="pr-final">
+          <span className="sd-label">05</span>
+          <h3>The Idea Worth Exploring</h3>
+          <p>Context-aware recommendations offered a more direct approach to immediate intent mismatch. But the idea of social discovery opened another possibility:</p>
+          <p className="pr-question">What if the things our friends discover could expand what our own algorithms recommend?</p>
+          <p className="pr-became">That question became Shared Discovery, an independent product design experiment in collective curiosity.</p>
         </div>
       </section>
 
