@@ -4,6 +4,7 @@ import { AnimatePresence, LayoutGroup, LazyMotion, MotionConfig, domMax, m } fro
 import Thumb from "./Thumb";
 import { Avatar, Brand, ChannelAv, Chrome, Dur, SOURCE_LABEL, Tag } from "./AppUI";
 import { Icon } from "./Fig";
+import { PhoneFrame, PhoneScreen } from "./Phone";
 import { CIRCLES, TOPICS, circle, person, topicLabel, watchUrl, type TopicId } from "@/lib/sd/data";
 import { NO_FEEDBACK, PERSONAL_MIX, SHARED_MIX, buildFeed, type Feedback, type Rec } from "@/lib/sd/engine";
 
@@ -112,6 +113,7 @@ export default function Prototype({ persona = "alex" }: { persona?: string }) {
       <MotionConfig reducedMotion="user" transition={SPRING}>
         <LayoutGroup id="demo-a">
           <div className="sd-proto" ref={root}>
+            <div className="demo-stage">
             <div className="sd-app app-yt" data-mode={mode} role="group" aria-label={`Shared Discovery prototype, viewing as ${me.name}`}
               onPointerDownCapture={() => setAuto(false)} onKeyDownCapture={() => setAuto(false)}>
               <Chrome url="watch.example" />
@@ -213,6 +215,11 @@ export default function Prototype({ persona = "alex" }: { persona?: string }) {
               <div className="app-toast" role="status" aria-live="polite">
                 <AnimatePresence>{toast && <m.span key={toast.text} initial={{ y: 16, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 8, opacity: 0 }}>{toast.text}{toast.undo && <button onClick={toast.undo}>Undo</button>}</m.span>}</AnimatePresence>
               </div>
+            </div>
+
+            <div className="ph-inset" aria-hidden="true" key={mode}>
+              <PhoneFrame><PhoneScreen shared={shared} circle={circle(circleId).name} chips={["All", ...chips.slice(0, 4).map((t) => TOPICS.find((x) => x.id === t)!.label)]} videos={shown.slice(0, 3).map((r) => r.video)} /></PhoneFrame>
+            </div>
             </div>
 
             <div className="demo-bar">
