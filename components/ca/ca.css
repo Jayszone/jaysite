@@ -1,0 +1,49 @@
+/* Claims & Appeals visuals. The workspace is drawn in a fixed light palette (like a screenshot). */
+.ca-wrap { margin: 2.6rem 0; width: min(66rem, calc(50vw + 26rem - var(--gutter))); }
+@media (max-width: 899px) { .ca-wrap { width: min(100%, calc(100vw - 2 * var(--gutter))); } }
+.ca-wrap figcaption { font-family: var(--sans); font-size: .78rem; line-height: 1.5; color: var(--mute); margin-top: .8rem; max-width: 44rem; }
+.ca-app { --t: #1f6479; --t-soft: #e6f1f4; --ink: #14171c; --mute2: #566070; --ln: #e3e6eb; --soft: #f3f5f7;
+  background: #fff; color: var(--ink); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; font-family: var(--sans); font-size: 14px; line-height: 1.45;
+  box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 36px 60px -42px rgba(0,0,0,.45); }
+.ca-app * { box-sizing: border-box; }
+.ca-app h3, .ca-app p, .ca-app dl, .ca-app dd, .ca-app ol { margin: 0; padding: 0; }
+.ca-app button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; text-align: left; }
+.ca-app :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.ca-top { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; padding: 12px 18px; background: var(--soft); border-bottom: 1px solid var(--ln); }
+.ca-brand { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; } .ca-brand i { width: 14px; height: 14px; border-radius: 4px; background: var(--t); }
+.ca-crumb { color: var(--mute2); } .ca-crumb b { margin: 0 4px; font-weight: 400; }
+.ca-pill { margin-left: auto; padding: 4px 11px; border-radius: 999px; background: #fff; border: 1px solid var(--ln); font-size: 12.5px; font-weight: 600; color: var(--mute2); transition: background .2s ease, color .2s ease, border-color .2s ease; }
+.ca-pill.is-set { background: var(--t-soft); border-color: var(--t); color: #174c5d; }
+.ca-body { display: grid; grid-template-columns: 14.5rem minmax(0, 1fr) minmax(0, 1.08fr); height: 690px; }
+.ca-case { padding: 18px; border-right: 1px solid var(--ln); background: #fafbfc; overflow: hidden; }
+.ca-case h3, .ca-lab { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; color: var(--mute2); }
+.ca-reason { margin-top: 6px; font-size: 16px; font-weight: 600; line-height: 1.3; }
+.ca-case dl { margin-top: 16px; display: grid; gap: 12px; } .ca-case dt { font-size: 12px; color: var(--mute2); } .ca-case dd { font-weight: 500; }
+.ca-answer { padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; min-width: 0; overflow: auto; }
+.ca-q { background: var(--soft); border-radius: 12px; padding: 11px 14px; font-size: 14px; line-height: 1.45; } .ca-q span { display: block; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; color: var(--mute2); margin-bottom: 3px; }
+.ca-steps { display: grid; gap: 12px; list-style: none; counter-reset: s; }
+.ca-steps li { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: start; font-size: 15px; line-height: 1.45; padding-left: 0; }
+.ca-app .ca-cite { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--t-soft); color: #174c5d; font-weight: 700; font-size: 12.5px; transition: background .15s ease, color .15s ease, transform .15s ease; }
+.ca-cite:hover { transform: translateY(-1px); } .ca-cite[aria-pressed="true"] { background: var(--t); color: #fff; }
+.ca-srcs { display: grid; gap: 6px; }
+.ca-src { display: grid; grid-template-columns: auto 1fr; gap: 0 10px; padding: 8px 11px; border: 1px solid var(--ln); border-radius: 10px; transition: border-color .15s ease, background .15s ease; }
+.ca-src b { font-weight: 700; } .ca-src span { color: var(--ink); } .ca-src em { grid-column: 2; font-style: normal; font-size: 12.5px; color: var(--mute2); }
+.ca-src:hover { border-color: var(--t); } .ca-src[aria-pressed="true"] { border-color: var(--t); background: var(--t-soft); }
+.ca-decide { margin-top: auto; border-top: 1px solid var(--ln); padding-top: 12px; display: grid; gap: 8px; }
+.ca-decide p { font-weight: 600; } .ca-decide div { display: flex; flex-wrap: wrap; gap: 8px; }
+.ca-decide button { padding: 8px 12px; border: 1px solid var(--ln); border-radius: 999px; font-size: 13px; font-weight: 600; min-height: 38px; transition: border-color .15s ease, background .15s ease; }
+.ca-decide button:hover { border-color: var(--t); } .ca-decide button[aria-pressed="true"] { background: var(--t); border-color: var(--t); color: #fff; }
+.ca-doc { border-left: 1px solid var(--ln); background: #f6f7f9; display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.ca-doc header { padding: 14px 18px 10px; display: grid; grid-template-columns: auto 1fr; gap: 0 10px; align-items: baseline; border-bottom: 1px solid var(--ln); background: #fff; }
+.ca-doc header b { font-weight: 700; } .ca-doc header small { grid-column: 1 / -1; margin-top: 3px; font-size: 12.5px; color: var(--mute2); }
+.ca-paper { position: relative; flex: 1; overflow-y: auto; margin: 14px; padding: 18px 20px 28px; background: #fff; border: 1px solid var(--ln); border-radius: 6px; font-family: var(--serif); font-size: 15.5px; line-height: 1.55; }
+.ca-paper p + p { margin-top: 12px; } .ca-paper mark { background: #cfe7ee; color: var(--ink); padding: 2px 3px; border-radius: 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.ca-hit b { font-weight: 700; } .ca-fill { color: #5b6573; }
+@media (max-width: 960px) { .ca-body { grid-template-columns: 1fr; height: auto; } .ca-case { border-right: 0; border-bottom: 1px solid var(--ln); } .ca-case dl { grid-template-columns: 1fr 1fr; } .ca-doc { border-left: 0; border-top: 1px solid var(--ln); } .ca-paper { max-height: 22rem; } .ca-answer { overflow: visible; } }
+
+/* quotation from a third-party article */
+.ca-cite-q { margin: 2rem 0; padding-left: 1.2rem; border-left: 2px solid color-mix(in srgb, var(--ac, var(--mute)) 72%, var(--fg)); max-width: 34rem; }
+.ca-cite-q blockquote { margin: 0; font-size: 1.3rem; line-height: 1.35; font-style: italic; }
+.ca-cite-q figcaption { margin-top: .6rem; font-family: var(--sans); font-size: .8rem; color: var(--mute); }
+.ca-cite-q a { text-decoration: underline; text-underline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .ca-pill, .ca-cite, .ca-src, .ca-decide button { transition: none; } }

@@ -1,8 +1,12 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import Frame from "./Frame";
+import CitedWorkspace from "./ca/CitedWorkspace";
+import Cite from "./ca/Cite";
 
 const components = {
+  CitedWorkspace,
+  Cite,
   Visual: ({ name }: { name: string }) => <div className="wide"><Frame visual={name} /></div>,
   PullQuote: ({ children }: { children: React.ReactNode }) => <blockquote className="pullquote">{children}</blockquote>,
   Note: ({ children }: { children: React.ReactNode }) => <p className="note" role="note">{children}</p>,

@@ -62,7 +62,7 @@ function AppealsArchitecture() {
   const ox = (i: number) => 20 + i * (ow + og), nx = (i: number) => 20 + i * (nw + ng);
   return (
     <>
-      <div className="viz-scroll">
+      <div className="viz-scroll" tabIndex={0} role="region" aria-label="Diagram, scrollable">
         <svg className="viz sketch" viewBox="0 0 940 560" role="img"
           aria-label="Architecture diagram. Offline, knowledge base files (PDF, HTML, Word, Excel and plain text) are normalized to Markdown, chunked with recursive, semantic and context-enriched methods, embedded, and stored in a vector database. Online, a question is embedded, matched by semantic and keyword retrieval, ranked with newer versions preferred, and answered by an LLM with citations to the exact source section. A human reviews the cited passage and makes the decision.">
           <text x="20" y="32" className="lane">1. Build the index (offline)</text>
@@ -100,7 +100,7 @@ function HealtheeStrategy() {
   const people = ["Product", "HR", "Finance", "Benefits Support", "Sales", "Customer Success"];
   return (
     <>
-      <div className="viz-scroll">
+      <div className="viz-scroll" tabIndex={0} role="region" aria-label="Diagram, scrollable">
         <svg className="viz sketch" viewBox="0 0 960 540" role="img"
           aria-label="Diagram of how a pilot became a business decision. Three kinds of evidence, pilot data, claims analysis and cost comparison, feed one question: is it worth rolling out to an employer, and at what price. Trade-offs between cost, employee experience and how hard it is to run weigh on that question. I modelled adoption scenarios and break-even, wrote a pricing and rollout recommendation, and the client deal was secured. Six teams that did not report to me had to be brought along.">
           <text x="14" y="30" className="lane">From evidence to a decision</text>
@@ -143,7 +143,7 @@ function RouteCompare() {
   const w = 200, x = (i: number) => 20 + i * 240;
   return (
     <>
-      <div className="viz-scroll">
+      <div className="viz-scroll" tabIndex={0} role="region" aria-label="Diagram, scrollable">
         <svg className="viz sketch" viewBox="0 0 960 440" role="img"
           aria-label="Two routes to the same service. Through insurance: employee, health plan with network and prior rules, in-network provider billing a negotiated rate, then a claim and cost sharing. Direct pay: employee, direct-pay provider who books the visit, then a posted price paid once with no claim.">
           <text x="20" y="32" className="lane">Through insurance</text>
