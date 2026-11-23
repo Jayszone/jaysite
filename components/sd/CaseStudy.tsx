@@ -5,14 +5,8 @@ import Prototype from "./Prototype";
 import PersonaCompare from "./PersonaCompare";
 
 // The case study in exactly three sections: The Idea, The Problem, The Experience.
-const STEPS: [string, string][] = [
-  ["Goal", "Improve long-term viewer satisfaction."],
-  ["Audience", "People who use YouTube to explore, discover, and learn."],
-  ["Problem", "Recommendations can reinforce existing interests while missing what users want to explore next."],
-  ["Hypothesis", "Discoveries from trusted friends could introduce worthwhile topics beyond an individual's usual recommendations."],
-];
 
-// The YouTube glyph from Simple Icons (CC0), used monochrome next to the label. Not a redrawn logo.
+// The YouTube play-button mark from Simple Icons (CC0), in YouTube red. Not a redrawn logo.
 const YtMark = () => (
   <svg className="sd-yt" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
 );
@@ -24,7 +18,7 @@ export default function SharedDiscoveryCaseStudy() {
       <section id="idea" aria-labelledby="idea-h">
         <div className="col">
           <Link href="/" className="back sd-rise" style={{ ["--i" as string]: 0 }}><span className="sd-arrow" aria-hidden="true">←</span> Work</Link>
-          <p className="sd-label sd-idea-label sd-rise" style={{ ["--i" as string]: 1 }}><YtMark />For YouTube · Independent product experiment</p>
+          <p className="sd-label sd-idea-label sd-rise" style={{ ["--i" as string]: 1 }}><YtMark /><span>YouTube · Independent product experiment</span></p>
           <h1 id="idea-h" className="sd-title sd-rise" style={{ ["--i" as string]: 2 }}>What if your algorithm could learn from your friends' curiosity?</h1>
           <div className="sd-lede sd-rise" style={{ ["--i" as string]: 3 }}>
             <p>Your recommendations know what you love. But your friends are exploring entirely different worlds.</p>
@@ -38,14 +32,12 @@ export default function SharedDiscoveryCaseStudy() {
       {/* ------------------------------------------------ The Problem */}
       <section id="problem" className="sd-problem" aria-labelledby="problem-h">
         <div className="col">
-          <h2 id="problem-h" className="sd-h2big">The problem isn't a lack of content. It's what we discover.</h2>
+          <h2 id="problem-h" className="sd-h2big">How much of YouTube are we missing?</h2>
           <div className="pr-body">
-            <p>YouTube has an extraordinary range of content, but recommendations are largely shaped by what we've already watched. Personalization helps us find familiar interests, but it may also limit the unfamiliar, worthwhile subjects we encounter.</p>
-            <p>This concept began as a product sense exercise on improving long-term viewer satisfaction, rather than simply maximizing engagement or watch time.</p>
+            <p>YouTube's recommendations learn from what we watch, helping us discover more content aligned with our interests. But our friends are exploring entirely different subjects, ideas, and perspectives that rarely appear in our feeds.</p>
+            <p className="pr-q">I started with a product sense question: <em>How might we improve long-term viewer satisfaction on YouTube?</em></p>
+            <p>This led me to explore whether bringing trusted friends' interests into our recommendations could make discovery more surprising and worthwhile.</p>
           </div>
-          <ol className="pr-steps">
-            {STEPS.map(([k, v]) => <li key={k}><span className="sd-label">{k}</span><p>{v}</p></li>)}
-          </ol>
         </div>
       </section>
 
