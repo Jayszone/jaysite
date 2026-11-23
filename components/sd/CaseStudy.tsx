@@ -13,6 +13,12 @@ const STAGES: [string, string, string[]][] = [
   ["04", "Explore Solutions", ["I considered three directions: conversational AI discovery, context-aware recommendations, and recommendations influenced by trusted friends."]],
 ];
 
+const NEXT: [string, string, string][] = [
+  ["01", "Test with real circles", "Start with small groups of friends. Compare discovery experiences and learn whether collective curiosity makes recommendations more valuable."],
+  ["02", "Refine the experience", "Experiment with the balance between personal relevance and group influence, using feedback to shape an experience people want to return to."],
+  ["03", "Expand the possibilities", "Imagine opting into discovery spaces shaped by people whose curiosity inspires you: scientists, architects, historians, or entire communities of explorers."],
+];
+
 // The YouTube play-button mark from Simple Icons (CC0), in YouTube red. Not a redrawn logo.
 const YtMark = () => (
   <svg className="sd-yt" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
@@ -80,10 +86,40 @@ export default function SharedDiscoveryCaseStudy() {
         <div className="sd-wide sd-figgap"><PersonaCompare /></div>
         <div className="col"><p className="sd-cap sd-b-cap">Switch between Alex, Sam, and Maya, or press Surprise me to explore something unexpected.</p></div>
 
-        <div className="col sd-close">
-          <h3 className="sd-h3">An experiment in collective curiosity.</h3>
-          <p className="sd-intro">Shared Discovery explores whether recommendations influenced by trusted friends can introduce more unfamiliar, worthwhile content while keeping each person's experience their own.</p>
-          <p className="sd-small">This independent concept uses fictional people and circles, real publicly available video content, and simulated recommendations. It is a design experiment, not a production recommendation system.</p>
+        <div className="sd-wide sd-end">
+          <header className="end-intro">
+            <h3 className="sd-h3 end-h">An experiment in collective curiosity.</h3>
+            <p className="end-q">What happens when discovery becomes something we shape together?</p>
+            <p className="end-p">Shared Discovery explores whether our friends' interests can help us discover more unfamiliar, worthwhile content while keeping recommendations personal.</p>
+          </header>
+
+          <div className="end-cols">
+            <div className="end-left">
+              <h4 className="end-sub">What would success look like?</h4>
+              <p className="sd-label end-tag">North Star metric · proposed</p>
+              <p className="end-north">Worthwhile Novel Discovery Rate</p>
+              <p className="end-lead">Are viewers discovering videos they wouldn't ordinarily encounter, and do they find those discoveries valuable?</p>
+              <p className="end-def">The percentage of sampled explored recommendations viewers report as both unfamiliar and worthwhile.</p>
+              <ul className="end-metrics">
+                <li><b>Long-term viewer satisfaction</b><span>Do viewers report a more satisfying discovery experience over time?</span></li>
+                <li><b>Voluntary return</b><span>Do viewers choose to return to Shared Discovery?</span></li>
+              </ul>
+              <p className="end-guard">Relevance and privacy understanding would remain essential guardrails.</p>
+            </div>
+            <div className="end-right">
+              <h4 className="end-sub">Where could this go?</h4>
+              <ol className="end-steps">
+                {NEXT.map(([n, h, t]) => (
+                  <li key={n}><span className="sd-label">{n}</span><h5>{h}</h5><p>{t}</p></li>
+                ))}
+              </ol>
+            </div>
+          </div>
+
+          <div className="end-vision">
+            <p>The next great thing you discover might begin with someone else's curiosity.</p>
+          </div>
+          <p className="sd-small end-note">This independent concept uses fictional people and circles, real publicly available video content, and simulated recommendations. It is a design experiment, not a production recommendation system.</p>
         </div>
       </section>
 
