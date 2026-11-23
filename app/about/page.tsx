@@ -12,8 +12,12 @@ export default function About() {
             {site.portrait ? /* eslint-disable-next-line @next/next/no-img-element */ <img src={site.portrait} alt="Portrait of Jay Naik" /> : <span>Photo placeholder</span>}
           </div>
           <div className="t">
-            <p>Hi, I&rsquo;m Jay, an engineer and AI product builder.</p>
-            <p>{site.intro}</p>
+            <h1 className="h1" style={{ marginTop: 0 }}>Hi, I&rsquo;m Jay.</h1>
+            <p style={{ marginTop: "1.4rem" }}>I&rsquo;m an engineer, AI product builder, and currently an MBA student at Cornell University.</p>
+            <p>I&rsquo;ve spent over five years working with technology across healthcare, automotive, and other industries, building machine learning systems and AI-powered products.</p>
+            <p>I started my career in engineering, and I genuinely loved building things. But somewhere along the way, I became just as curious about the business behind the technology. What makes a product useful? Why do people pay for certain products? How do you decide what&rsquo;s worth building in the first place?</p>
+            <p>That curiosity led me to pursue my MBA at Cornell, where I&rsquo;m exploring product strategy, business, and the questions that first got me interested in this side of technology.</p>
+            <p>Outside of work, I&rsquo;m a national-level squash player. Always up for a good game, so if you play, hit me up!</p>
           </div>
         </div>
 
