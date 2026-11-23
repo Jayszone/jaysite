@@ -180,3 +180,23 @@
 
 /* ---- motion ---- */
 @media (prefers-reduced-motion: reduce) { .ca-canvas *, .ca-canvas *::before { animation: none !important; transition: none !important; } }
+
+/* ---- work-index thumbnail ---- */
+.ca-th { aspect-ratio: 16 / 10.4; width: 100%; border-radius: 10px; container-type: inline-size; }
+.ca-th::before { display: none; }
+.ca-th-h { position: absolute; left: 6cqw; top: 6cqw; width: 52cqw; font-size: 5.6cqw; line-height: 1.12; font-weight: 500; letter-spacing: -.02em; color: var(--navy); }
+.ca-th-arch { position: absolute; left: 4cqw; right: 0; top: 40cqw; height: 30cqw; background: var(--or); border-radius: 15cqw 0 0 15cqw; }
+.ca-th-ans, .ca-th-src { position: absolute; background: #fff; border: 1px solid var(--ln); border-radius: 2cqw; box-shadow: 0 2cqw 4cqw -2.5cqw rgba(20,40,75,.4); font-size: 2.5cqw; line-height: 1.35; }
+.ca-th-ans { left: 8cqw; top: 31cqw; width: 50cqw; padding: 3cqw; }
+.ca-th-ans b { display: block; font-size: 2.1cqw; font-weight: 600; color: var(--ort); background: var(--pe); padding: .8cqw 1.6cqw; border-radius: 1cqw; margin-bottom: 2cqw; }
+.ca-th-ans p + p { margin-top: 1.6cqw; }
+.ca-th-ans p { display: flex; gap: 1.6cqw; }
+.ca-th-ans span { flex: none; width: 4cqw; height: 4cqw; border-radius: 50%; background: var(--pe); border: 1px solid #f4b99c; color: var(--ort); font: 700 2.3cqw/3.8cqw var(--sans); text-align: center; }
+.ca-th-src { right: 6cqw; top: 22cqw; width: 36cqw; padding: 3cqw; }
+.ca-th-src em { display: block; font-style: normal; font-family: var(--ca-mono); font-size: 1.9cqw; color: var(--gr); margin-bottom: 2cqw; }
+.ca-th-src u { display: block; height: 1.2cqw; background: var(--ln); border-radius: 1cqw; margin: 1.6cqw 0; text-decoration: none; }
+.ca-th-src u.s { width: 60%; }
+.ca-th-src mark { display: block; background: var(--pe); color: var(--navy); box-shadow: inset .8cqw 0 0 var(--or); padding: 1cqw 1cqw 1cqw 2cqw; font-size: 2.4cqw; }
+.ca-canvas.ca-th p { color: var(--navy); font-family: var(--sans); max-width: none; margin: 0; }
+.ca-canvas.ca-th .ca-th-h { font-size: 5.6cqw; margin: 0; }
+.ca-canvas.ca-th .ca-th-ans p { font-size: 2.5cqw; margin: 0; } .ca-canvas.ca-th .ca-th-ans p + p { margin-top: 1.6cqw; }

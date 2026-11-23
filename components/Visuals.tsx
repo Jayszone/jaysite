@@ -1,5 +1,6 @@
 import rough from "roughjs";
 import ThumbPhones from "./sd/ThumbPhones";
+import CaThumb from "./ca/Thumb";
 
 // Original, theme-aware project graphics. Drawn in the hand-sketched style of a whiteboard
 // (rough.js, the same engine Excalidraw uses). Seeded, so the drawing is identical on every render.
@@ -173,4 +174,4 @@ function RouteCompare() {
 
 export { Box, Arrow, Line, paths, gen };
 
-export const VISUALS: Record<string, () => React.ReactElement> = { "appeals-architecture": AppealsArchitecture, "healthee-strategy": HealtheeStrategy, "route-compare": RouteCompare, "sd-phones": ThumbPhones };
+export const VISUALS: Record<string, () => React.ReactElement> = { "appeals-architecture": AppealsArchitecture, "healthee-strategy": HealtheeStrategy, "route-compare": RouteCompare, "sd-phones": ThumbPhones, "ca-thumb": CaThumb };
