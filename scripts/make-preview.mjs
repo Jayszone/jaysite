@@ -45,7 +45,9 @@ for (const rel of pages) {
     return `href="${up}${target}${hash ? "#" + hash : ""}"`;
   });
   body = body.replace(/src="(\/[^"\/][^"]*)"/g, (m, h) => h.startsWith("/_next") ? m : `src="${up}${h.slice(1)}"`);
-  const staticNote = /class="sd"/.test(body)
+  const staticNote = /class="ca-wrap"/.test(body)
+    ? '<p style="font:14px/1.5 Inter,system-ui,sans-serif;background:#fff3cd;color:#3b2f00;margin:0;padding:.7rem 1rem;text-align:center">Static preview: the cited-answer workspace is interactive on the live site and locally (<b>npm run dev</b>).</p>'
+    : /class="sd"/.test(body)
     ? '<p style="font:14px/1.5 Inter,system-ui,sans-serif;background:#fff3cd;color:#3b2f00;margin:0;padding:.7rem 1rem;text-align:center">Static preview: the interactive prototype and sliders need the live site. Run it locally with <b>git pull</b> and <b>npm run dev</b>, then open /work/shared-discovery.</p>' : "";
   const previewCss = /class="sd"/.test(body) ? ".sd-hero{--p:1 !important;height:auto}.sd-hero-stick{position:static !important;height:auto !important;padding-block:2rem}" : "";
   const inner = `<title>${title}</title>\n${fonts}\n<style>${css}\n${headCss}\n${previewCss}</style>\n${staticNote}${body}\n${shim}`;
