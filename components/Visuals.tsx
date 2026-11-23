@@ -1,4 +1,5 @@
 import rough from "roughjs";
+import ThumbPhones from "./sd/ThumbPhones";
 
 // Original, theme-aware project graphics. Drawn in the hand-sketched style of a whiteboard
 // (rough.js, the same engine Excalidraw uses). Seeded, so the drawing is identical on every render.
@@ -172,23 +173,4 @@ function RouteCompare() {
 
 export { Box, Arrow, Line, paths, gen };
 
-function SharedVenn() {
-  const circles: [number, number, string][] = [[330, 170, "Alex"], [470, 170, "Sam"], [400, 270, "Maya"]];
-  return (
-    <div className="viz-scroll">
-      <svg className="viz sketch" viewBox="0 0 800 440" role="img" aria-label="Three overlapping circles for three friends, with a shared centre labelled Shared Discovery.">
-        {circles.map(([x, y, n], i) => (
-          <g key={n}>
-            <circle cx={x} cy={y} r={118} className={`bx t${i === 0 ? 1 : i === 1 ? 2 : 0}`} style={{ fillOpacity: 0.55 }} />
-            {paths(gen.circle(x, y, 236, { seed: 7 + i, roughness: 1.4, bowing: 1.2 }))}
-            <text x={x + (i === 0 ? -62 : i === 1 ? 62 : 0)} y={y + (i === 2 ? 74 : i === 0 ? -34 : -34)} className="lane" style={{ textAnchor: "middle" }}>{n}</text>
-          </g>
-        ))}
-        <text x="400" y="204" className="hd" style={{ fontSize: 21 }}>Shared</text>
-        <text x="400" y="228" className="hd" style={{ fontSize: 21 }}>Discovery</text>
-      </svg>
-    </div>
-  );
-}
-
-export const VISUALS: Record<string, () => React.ReactElement> = { "appeals-architecture": AppealsArchitecture, "healthee-strategy": HealtheeStrategy, "route-compare": RouteCompare, "sd-venn": SharedVenn };
+export const VISUALS: Record<string, () => React.ReactElement> = { "appeals-architecture": AppealsArchitecture, "healthee-strategy": HealtheeStrategy, "route-compare": RouteCompare, "sd-phones": ThumbPhones };

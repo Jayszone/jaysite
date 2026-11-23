@@ -296,3 +296,10 @@
   .sd-rise, .pr-stage, .pr-final > *, .sd-b-intro > *, .end-left > *, .end-right li, .end-intro > *, .ph-inset .ph-card, .app-pop, .app-scrim, .app-toast span { animation: none !important; }
   .sd-arrow, .demo-ctl button, .app-seg button { transition: none; }
 }
+
+/* ---------- Work-index thumbnail (two small phones) ---------- */
+.sd.sd-mini { position: relative; width: 100%; padding: 0; font-size: inherit; line-height: 1.4; overflow: hidden; pointer-events: none; }
+.sd-mini-stage { position: absolute; top: 0; transform-origin: top left; }
+.sd-mini-a, .sd-mini-b { position: absolute; top: 0; width: 198px; height: 417px; }
+.sd-mini-a { left: 40px; } .sd-mini-b { left: 282px; top: 40px; }
+.sd-mini-a .phone, .sd-mini-b .phone { transform: scale(.62); transform-origin: top left; position: absolute; left: 0; top: 0; }
