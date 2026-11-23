@@ -14,9 +14,9 @@ const STAGES: [string, string, string[]][] = [
 ];
 
 const NEXT: [string, string, string][] = [
-  ["01", "Test with real circles", "Start with small groups of friends. Compare discovery experiences and learn whether collective curiosity makes recommendations more valuable."],
-  ["02", "Refine the experience", "Experiment with the balance between personal relevance and group influence, using feedback to shape an experience people want to return to."],
-  ["03", "Expand the possibilities", "Imagine opting into discovery spaces shaped by people whose curiosity inspires you: scientists, architects, historians, or entire communities of explorers."],
+  ["01", "Test with real circles", "Try it with small groups of friends and see whether collective curiosity makes recommendations more valuable."],
+  ["02", "Refine the experience", "Tune the balance between personal relevance and group influence, using feedback."],
+  ["03", "Expand the possibilities", "Imagine opting into discovery spaces shaped by people whose curiosity inspires you, such as scientists, architects or historians."],
 ];
 
 // The YouTube play-button mark from Simple Icons (CC0), in YouTube red. Not a redrawn logo.
@@ -86,11 +86,10 @@ export default function SharedDiscoveryCaseStudy() {
         <div className="sd-wide sd-figgap"><PersonaCompare /></div>
         <div className="col"><p className="sd-cap sd-b-cap">Switch between Alex, Sam, and Maya, or press Surprise me to explore something unexpected.</p></div>
 
-        <div className="sd-wide sd-end">
+        <div className="sd-end">
           <header className="end-intro">
-            <h3 className="sd-h3 end-h">An experiment in collective curiosity.</h3>
-            <p className="end-q">What happens when discovery becomes something we shape together?</p>
-            <p className="end-p">Shared Discovery explores whether our friends' interests can help us discover more unfamiliar, worthwhile content while keeping recommendations personal.</p>
+            <h3 className="sd-h3 end-h">Taking it forward.</h3>
+            <p className="end-p">Shared Discovery asks whether our friends' curiosity can make recommendations more worthwhile, while every feed stays personal.</p>
           </header>
 
           <div className="end-cols">
@@ -98,11 +97,11 @@ export default function SharedDiscoveryCaseStudy() {
               <h4 className="end-sub">What would success look like?</h4>
               <p className="sd-label end-tag">North Star metric · proposed</p>
               <p className="end-north">Worthwhile Novel Discovery Rate</p>
-              <p className="end-lead">Are viewers discovering videos they wouldn't ordinarily encounter, and do they find those discoveries valuable?</p>
-              <p className="end-def">The percentage of sampled explored recommendations viewers report as both unfamiliar and worthwhile.</p>
+              <p className="end-lead">Are viewers discovering videos they wouldn't ordinarily encounter, and do they find them valuable?</p>
+              <p className="end-def">The share of sampled explored recommendations viewers call both unfamiliar and worthwhile.</p>
               <ul className="end-metrics">
-                <li><b>Long-term viewer satisfaction</b><span>Do viewers report a more satisfying discovery experience over time?</span></li>
-                <li><b>Voluntary return</b><span>Do viewers choose to return to Shared Discovery?</span></li>
+                <li><b>Long-term viewer satisfaction</b><span>Is discovery more satisfying over time?</span></li>
+                <li><b>Voluntary return</b><span>Do viewers choose to come back to Shared Discovery?</span></li>
               </ul>
               <p className="end-guard">Relevance and privacy understanding would remain essential guardrails.</p>
             </div>
@@ -116,9 +115,6 @@ export default function SharedDiscoveryCaseStudy() {
             </div>
           </div>
 
-          <div className="end-vision">
-            <p>The next great thing you discover might begin with someone else's curiosity.</p>
-          </div>
           <p className="sd-small end-note">This independent concept uses fictional people and circles, real publicly available video content, and simulated recommendations. It is a design experiment, not a production recommendation system.</p>
         </div>
       </section>
