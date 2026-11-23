@@ -5,10 +5,11 @@ import Frame from "@/components/Frame";
 import Mdx from "@/components/Mdx";
 import SharedDiscoveryCaseStudy from "@/components/sd/CaseStudy";
 import ClaimsCaseStudy from "@/components/ca/ClaimsCaseStudy";
+import HealtheeCaseStudy from "@/components/hs/HealtheeCaseStudy";
 import { getProject, getProjects } from "@/lib/content";
 
 // Projects with a fully custom, interactive page.
-const CUSTOM: Record<string, () => React.ReactElement> = { "shared-discovery": SharedDiscoveryCaseStudy, "claims-appeals": ClaimsCaseStudy };
+const CUSTOM: Record<string, () => React.ReactElement> = { "shared-discovery": SharedDiscoveryCaseStudy, "claims-appeals": ClaimsCaseStudy, "healthee-access": HealtheeCaseStudy };
 
 export const dynamicParams = false;
 export function generateStaticParams() { return getProjects().map((p) => ({ slug: p.slug })); }
