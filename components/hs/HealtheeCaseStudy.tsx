@@ -14,6 +14,10 @@ export default function HealtheeCaseStudy() {
         <ul className="hs-meta" aria-label="Project details">
           <li>Product Management Intern</li><li>2026</li><li>Healthcare</li><li>Strategy · Pilot to scale</li>
         </ul>
+        <div className="hs-intro">
+          <p>Healthee Access was a 0→1 employer-sponsored program for booking lower-cost diagnostic and outpatient care outside insurance. There was no existing product or playbook. I owned the pilot from scope through day-to-day operation, then used the results and a claims analysis to build the case for a client.</p>
+          <p>It is the strategy side of my work: decide what has to be true, test it cheaply, and turn the evidence into a recommendation. It is also the habit I bring to AI product work, where a result only matters if it changes a decision.</p>
+        </div>
       </div>
 
       <div className="hs-wide">
@@ -52,9 +56,18 @@ export default function HealtheeCaseStudy() {
             <p className="hs-bar"><b>Takeaway</b>The pilot showed strong initial demand and repeat usage, validating employee interest in a guided direct-pay access model.</p>
             <p className="hs-src">Source: Healthee Access pilot. One employer group of 100 people; early validation, not market-wide proof. Usage and return rates are not long-term retention.</p>
           </section>
-          <figcaption>Slide 1 of 2</figcaption>
-        </figure>
+          </figure>
+      </div>
 
+      <div className="col">
+       <div className="hs-bridge">
+        <h3>How I approached it</h3>
+        <p>The pilot could show whether employees would use the program. It could not show whether the economics worked at employer scale. So I treated them as two separate questions.</p>
+        <p>For the first, I ran the pilot and used feedback and usage patterns to improve messaging, procedure discovery, booking support and the physician-order process. For the second, I analyzed claims from a large employer client, modeled adoption at three levels, and set the results against procedure-level costs and what the pilot had cost to run.</p>
+       </div>
+      </div>
+
+      <div className="hs-wide">
         {/* ------------------------------------------------ Slide 2 */}
         <figure className="hs-fig">
           <section className="hs-slide" aria-labelledby="s2">
@@ -73,7 +86,7 @@ export default function HealtheeCaseStudy() {
               <div className="hs-col">
                 <h3>Impact</h3>
                 <dl className="hs-big">
-                  <div className="lead"><dd>Up to $7.79M</dd><dt>modeled savings opportunity</dt><dd className="note">Modeled from historical claims. Not realized savings. Realizing under 0.5% of it would cover the program&apos;s cost.</dd></div>
+                  <div className="lead"><dd>Up to $7.79M</dd><dt>modeled savings opportunity</dt><dd className="nt">Modeled from historical claims. Not realized savings. Realizing under 0.5% of it would cover the program&apos;s cost.</dd></div>
                   <div><dd>5,000+</dd><dt>claims data points analyzed</dt></div>
                   <div><dd>~$70K</dd><dt>pilot delivered against a $100K budget, about 30% under</dt></div>
                   <div><dd className="txt">Client deal secured</dd><dt>after the recommendation was presented to company stakeholders</dt></div>
@@ -93,14 +106,13 @@ export default function HealtheeCaseStudy() {
             <p className="hs-bar"><b>Conclusion</b>The project progressed from pilot validation to a commercially credible business case for employer expansion.</p>
             <p className="hs-src">Source: Healthee Access pilot; claims analysis for a large employer client. Savings are a modeled opportunity based on historical claims, not realized results.</p>
           </section>
-          <figcaption>Slide 2 of 2</figcaption>
-        </figure>
+          </figure>
       </div>
 
       <div className="col hs-end">
         <h3>What I took from it</h3>
         <p>Most of the pilot&apos;s problems were handoffs: physician orders, provider acceptance and payment. The idea held up. Most of the teams it depended on did not report to me, so I learned to ask for specific things early.</p>
-        <p>It also changed how I judge analytical work. At UnitedHealth I measured a model by how well it performed. Here the claims analysis mattered because of the decision it supported.</p>
+        <p>It also changed how I judge analytical work. At UnitedHealth I measured a model by how well it performed. Here the claims analysis mattered because of the decision it supported. I now start AI product work from that question: what decision will this change, and what evidence would let someone trust it?</p>
       </div>
     </div>
   );

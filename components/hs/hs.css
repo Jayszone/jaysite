@@ -8,7 +8,7 @@
 .hs-fig figcaption { font-family: var(--sans); font-size: .78rem; color: var(--mute); margin-top: .7rem; }
 
 .hs-slide { --ink: #14171c; --gr: #5a606a; --ln: #d9dce1; --bl: #1e3a5f; --bl2: #e9eef5; --pe: #f6f7f9;
-  background: #fff; color: var(--ink); border: 1px solid var(--ln); border-radius: 4px; padding: clamp(18px, 3.4vw, 40px); font-family: var(--sans); font-size: 14.5px; line-height: 1.45;
+  background: #fff; color: var(--ink); border: 1px solid var(--ln); border-radius: clamp(16px, 2.4vw, 26px); padding: clamp(18px, 3.4vw, 40px); font-family: var(--sans); font-size: 14.5px; line-height: 1.45;
   box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 28px 44px -38px rgba(0,0,0,.35); }
 .hs-slide *, .hs-slide *::before { box-sizing: border-box; }
 .hs-slide p, .hs-slide h2, .hs-slide h3, .hs-slide ul, .hs-slide ol, .hs-slide dl, .hs-slide dd { margin: 0; padding: 0; }
@@ -24,7 +24,7 @@
 .hs-col ul li { position: relative; padding-left: 14px; }
 .hs-col ul li::before { content: ""; position: absolute; left: 0; top: .6em; width: 5px; height: 5px; background: var(--bl); }
 .hs-choices { display: grid; gap: .9rem; }
-.hs-choices div { border-left: 3px solid var(--bl); background: var(--pe); padding: .55rem .8rem; }
+.hs-choices div { border-radius: 0 10px 10px 0; border-left: 3px solid var(--bl); background: var(--pe); padding: .55rem .8rem; }
 .hs-choices dt { font-weight: 600; margin-bottom: .15rem; } .hs-choices dd { color: #353a42; }
 .hs-metrics { display: grid; gap: 0; }
 .hs-metrics div { padding: .7rem 0; border-bottom: 1px solid var(--ln); } .hs-metrics div:first-child { padding-top: 0; } .hs-metrics div:last-child { border-bottom: 0; }
@@ -36,14 +36,14 @@
 .hs-big .lead dd { font-size: clamp(2.1rem, 1.2rem + 1.8vw, 2.9rem); white-space: nowrap; }
 .hs-big dd.txt { font-size: 1.35rem; }
 .hs-big dt { font-size: 13px; color: var(--gr); margin-top: .25rem; }
-.hs-slide .hs-big .lead dd.note { font-family: var(--sans); font-weight: 400; line-height: 1.45; white-space: normal; font-size: 12.5px; color: var(--gr); margin-top: .4rem; }
-.hs-rec { background: var(--bl2); border-left: 0; margin-left: clamp(8px, 1.4vw, 16px); padding: 1rem clamp(12px, 1.8vw, 20px) 1.2rem; }
+.hs-slide .hs-big .lead dd.nt { font-family: var(--sans); font-weight: 400; line-height: 1.45; white-space: normal; font-size: 12.5px; color: var(--gr); margin-top: .4rem; }
+.hs-rec { border-radius: 14px; background: var(--bl2); border-left: 0; margin-left: clamp(8px, 1.4vw, 16px); padding: 1rem clamp(12px, 1.8vw, 20px) 1.2rem; }
 .hs-rec h3 { border-bottom-color: #c5d0e0; }
 .hs-slide .hs-lead { font-weight: 600; margin-bottom: .6rem; }
 .hs-rec ol { list-style: none; counter-reset: r; display: grid; gap: .7rem; }
 .hs-rec li { counter-increment: r; display: flex; gap: 10px; }
 .hs-rec li::before { content: counter(r); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--bl); color: #fff; font: 600 12px/22px var(--sans); text-align: center; }
-.hs-slide .hs-bar { margin-top: 1.4rem; padding: .85rem 1.1rem; background: var(--bl); color: #fff; font-size: 15px; line-height: 1.4; display: flex; gap: 1rem; align-items: baseline; }
+.hs-slide .hs-bar { border-radius: 12px; margin-top: 1.4rem; padding: .85rem 1.1rem; background: var(--bl); color: #fff; font-size: 15px; line-height: 1.4; display: flex; gap: 1rem; align-items: baseline; }
 .hs-bar b { flex: none; font-size: 11.5px; text-transform: uppercase; letter-spacing: .07em; font-weight: 600; opacity: .85; }
 .hs-slide .hs-src { margin-top: .8rem; font-size: 11.5px; color: var(--gr); }
 .hs-end { margin-top: clamp(3rem, 7vw, 4.5rem); padding-top: 1.4rem; border-top: 1px solid var(--line); }
@@ -61,3 +61,9 @@
   @keyframes hsIn { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
 }
 @media (prefers-reduced-motion: reduce) { .hs-slide { animation: none; } }
+.hs-intro, .hs-bridge { max-width: 38rem; }
+.hs-intro { margin-top: 2rem; }
+.hs-intro p, .hs-bridge p { line-height: 1.6; margin: 0 0 1rem; }
+.hs-bridge h3 { font-size: 1.4rem; font-weight: 500; margin: 0 0 .9rem; }
+.hs-bridge { margin-top: clamp(3rem, 6vw, 4rem); }
+.hs-wide + .hs-bridge { margin-top: clamp(3rem, 6vw, 4rem); }
