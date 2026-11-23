@@ -16,7 +16,7 @@ export default function Home() {
           <p>Welcome to my corner of the internet. I&rsquo;m an engineer and AI product builder, and I&rsquo;m pursuing my MBA at Cornell.</p>
           <p>I&rsquo;m thoroughly curious about a myriad of topics. I&rsquo;m also persistent, and I think those traits define me.</p>
           <p>I like to read (not doing that a lot lately, lol). I like exploring different subjects and cultures, and how culture shapes businesses and personal decisions.</p>
-          <p>This space is a bit of everything: <Link href="/" className="inline">/work</Link>, <Link href="/curiosities" className="inline">/curiosities</Link>, <Link href="/thinking" className="inline">/thinking</Link> and <Link href="/about" className="inline">/about</Link>.</p>
+          <p>This space is a bit of everything: <Link href="/" className="inline">/work</Link>, <Link href="/curiosities" className="inline">/curiosities</Link>, <Link href="/thinking" className="inline">/tabula rasa</Link> and <Link href="/about" className="inline">/about</Link>.</p>
         </div>
         <div className="contact sans">
           <div><span className="lbl mute" style={{ fontSize: ".95rem" }}>Get in touch</span>

@@ -6,7 +6,7 @@ export default function Curiosities() {
   return (
     <div className="col">
       <h1 className="sh">Curiosities</h1>
-      <p className="mute" style={{ marginTop: "2rem", maxWidth: "36rem" }}>Things I keep wondering about. <span className="ph">Sample set. Edit content/curiosities.json</span></p>
+      <p className="mute" style={{ marginTop: "2rem", maxWidth: "36rem" }}>Things I keep wondering about. Art and belonging is the first; the rest are to be decided.</p>
       <ul className="cur" style={{ marginTop: "3rem" }}>
         {getCuriosities().map((c) => (
           <li key={c.id} id={c.id}>

@@ -20,66 +20,24 @@
     "caption": "Bidri ware. Images shown for illustration."
   },
   {
-    "id": "mechanisms",
-    "title": "How things mesh",
-    "kicker": "Mechanisms",
-    "blurb": "Sample: small systems whose parts quietly depend on each other.",
-    "detail": "SAMPLE ENTRY. Replace this with a note on something you find fascinating: why you like it, what you've read, a link worth sharing. Each entry lives in content/curiosities.json."
+    "id": "tbd-1",
+    "title": "TBD",
+    "kicker": "To be decided",
+    "blurb": "Something I'm curious about. Still to be written.",
+    "detail": "TBD. This space is held for something I find fascinating and want to write about properly."
   },
   {
-    "id": "geometry",
-    "title": "Polyhedra",
-    "kicker": "Geometry",
-    "blurb": "Sample: Leonardo drew them for Pacioli. The hero's core is one of them.",
-    "detail": "SAMPLE ENTRY. Leonardo da Vinci illustrated polyhedra for Luca Pacioli's De divina proportione (1509). The dodecahedron at the heart of the homepage instrument is a nod to that collaboration. Add your own notes here."
+    "id": "tbd-2",
+    "title": "TBD",
+    "kicker": "To be decided",
+    "blurb": "Something I'm curious about. Still to be written.",
+    "detail": "TBD. This space is held for something I find fascinating and want to write about properly."
   },
   {
-    "id": "flight",
-    "title": "Wings and ribs",
-    "kicker": "Flight",
-    "blurb": "Sample: the oldest dream in the notebook.",
-    "detail": "SAMPLE ENTRY. A space for something about flight, or about any old idea that was waiting for the right materials."
-  },
-  {
-    "id": "instruments",
-    "title": "Dividers",
-    "kicker": "Instruments",
-    "blurb": "Sample: tools that make thinking measurable.",
-    "detail": "SAMPLE ENTRY. Instruments extend what a mind can do. Add the instrument (physical or conceptual) you can't stop thinking about."
-  },
-  {
-    "id": "patterns",
-    "title": "The spiral again",
-    "kicker": "Patterns",
-    "blurb": "Sample: why the same shape keeps turning up.",
-    "detail": "SAMPLE ENTRY. Patterns that recur across nature, markets and software. Add a few you've noticed."
-  },
-  {
-    "id": "seeing",
-    "title": "Learning to look",
-    "kicker": "Optics",
-    "blurb": "Sample: noticing is a skill.",
-    "detail": "SAMPLE ENTRY. Lenses, perspective, design critique: anything about seeing more clearly."
-  },
-  {
-    "id": "business",
-    "title": "Business model flywheels",
-    "kicker": "Business models",
-    "blurb": "Sample: why some companies compound.",
-    "detail": "SAMPLE ENTRY. A business model you find elegant, and why. Add a link or a diagram."
-  },
-  {
-    "id": "books",
-    "title": "Books I return to",
-    "kicker": "Reading",
-    "blurb": "Sample: a shelf, not a ranking.",
-    "detail": "SAMPLE ENTRY. Replace with real titles and a line on why each stuck. Nothing here is a claim about what Jay has read."
-  },
-  {
-    "id": "minds",
-    "title": "Thinking machines",
-    "kicker": "AI",
-    "blurb": "Sample: what models are good at, and what they are not.",
-    "detail": "SAMPLE ENTRY. Notes, experiments and open questions about AI, kept separate from product work."
+    "id": "tbd-3",
+    "title": "TBD",
+    "kicker": "To be decided",
+    "blurb": "Something I'm curious about. Still to be written.",
+    "detail": "TBD. This space is held for something I find fascinating and want to write about properly."
   }
 ]
