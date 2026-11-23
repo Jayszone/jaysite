@@ -64,10 +64,10 @@ export default function SharedDiscoveryCaseStudy() {
 
         <div className="pr-final">
           <span className="sd-label">05</span>
-          <h3>The Idea Worth Exploring</h3>
+          <h3>The solution I explored: Shared Discovery</h3>
           <p>Context-aware recommendations offered a more direct approach to immediate intent mismatch. But the idea of social discovery opened another possibility:</p>
           <p className="pr-question">What if the things our friends discover could expand what our own algorithms recommend?</p>
-          <p className="pr-became">That question became Shared Discovery, an independent product design experiment in collective curiosity.</p>
+          <p className="pr-became">A shared space for ideas, where the content our friends consume inspires us and enriches our own information channels.</p>
         </div>
       </section>
 
