@@ -6,17 +6,17 @@ import PersonaCompare from "./PersonaCompare";
 
 // The case study in exactly three sections: The Idea, The Problem, The Experience.
 
-const STAGES: [string, string, string[]][] = [
-  ["01", "Understand the Ecosystem", ["I considered three key players: creators, viewers, and advertisers. I prioritized viewers because improving long-term viewer satisfaction was the central objective."]],
-  ["02", "Segment the Audience", ["I segmented viewing experiences by motivation (informational versus entertainment) and duration (short versus long videos), then focused on long-form informational viewing as a segment worth investigating."]],
-  ["03", "Identify the Friction", ["I mapped the viewer journey and identified three challenges: discovering relevant content, finding videos that fit the viewer's available time, and receiving worthwhile follow-up recommendations.", "I prioritized interest mismatch at the point of discovery, particularly when recommendations fail to reflect what someone wants to explore."]],
-  ["04", "Explore Solutions", ["I considered three directions: conversational AI discovery, context-aware recommendations, and recommendations influenced by trusted friends."]],
+const STAGES: [string, string, string][] = [
+  ["01", "Understand the ecosystem", "I considered creators, viewers, and advertisers, then focused on viewers because long-term viewer satisfaction was the objective."],
+  ["02", "Segment the audience", "I compared informational and entertainment viewing across short and long videos, focusing on long-form informational content."],
+  ["03", "Identify the friction", "I explored relevance, available viewing time, and follow-up discovery. I prioritized moments when recommendations fail to reflect what someone wants to explore."],
+  ["04", "Explore solutions", "I considered conversational AI discovery, context-aware recommendations, and discovery influenced by trusted friends."],
 ];
 
 const NEXT: [string, string, string][] = [
-  ["01", "Test with real circles", "Try it with small groups of friends and see whether collective curiosity makes recommendations more valuable."],
-  ["02", "Refine the experience", "Tune the balance between personal relevance and group influence, using feedback."],
-  ["03", "Expand the possibilities", "Imagine opting into discovery spaces shaped by people whose curiosity inspires you, such as scientists, architects or historians."],
+  ["01", "Test with real circles", "Run prototype studies with small groups of friends to understand whether collective discovery introduces more worthwhile content."],
+  ["02", "Refine the experience", "Experiment with personal relevance, group influence, and user controls."],
+  ["03", "Expand the possibilities", "Explore optional discovery spaces shaped by the interests of researchers, creators, and communities people admire."],
 ];
 
 // The YouTube play-button mark from Simple Icons (CC0), in YouTube red. Not a redrawn logo.
@@ -34,8 +34,8 @@ export default function SharedDiscoveryCaseStudy() {
           <p className="sd-label sd-idea-label sd-rise" style={{ ["--i" as string]: 1 }}><YtMark /><span>YouTube · Independent product experiment</span></p>
           <h1 id="idea-h" className="sd-title sd-rise" style={{ ["--i" as string]: 2 }}>What if your algorithm could learn from your friends' curiosity?</h1>
           <div className="sd-lede sd-rise" style={{ ["--i" as string]: 3 }}>
-            <p>Your recommendations know what you love. But your friends are exploring entirely different worlds.</p>
-            <p>Shared Discovery is a concept for YouTube that brings their curiosity into your feed, helping you discover things you might never have searched for on your own.</p>
+            <p>Your recommendations know what you love. Your friends are exploring entirely different worlds.</p>
+            <p>Shared Discovery brings their curiosity into your feed, helping you encounter ideas you might never have searched for yourself.</p>
           </div>
         </div>
         <HeroPhones />
@@ -51,23 +51,25 @@ export default function SharedDiscoveryCaseStudy() {
           <p className="pr-challenge">How might we improve long-term viewer satisfaction on YouTube?</p>
           <p className="pr-lead pr-after">YouTube's recommendation system helps viewers navigate an enormous library of content. I wanted to explore how better discovery could make that experience more relevant, worthwhile, and satisfying over time.</p>
 
-          <ol className="pr-stages">
-            {STAGES.map(([n, h, t]) => (
-              <li key={n} className="pr-stage">
-                <span className="sd-label">{n}</span>
-                <h3>{h}</h3>
-                {t.map((x) => <p key={x}>{x}</p>)}
-              </li>
-            ))}
-          </ol>
+
         </div>
+
+        <ol className="pr-stages">
+          {STAGES.map(([n, h, t]) => (
+            <li key={n} className="pr-stage">
+              <span className="sd-label">{n}</span>
+              <h3>{h}</h3>
+              <p>{t}</p>
+            </li>
+          ))}
+        </ol>
 
         <div className="pr-final">
           <span className="sd-label">05</span>
           <h3>The solution I explored: Shared Discovery</h3>
-          <p>Context-aware recommendations offered a more direct approach to immediate intent mismatch. But the idea of social discovery opened another possibility:</p>
-          <p className="pr-question">What if the things our friends discover could expand what our own algorithms recommend?</p>
-          <p className="pr-became">A shared space for ideas, where the content our friends consume inspires us and enriches our own information channels.</p>
+          <p>Context-aware recommendations were a more direct solution to immediate intent mismatch. But friend-influenced discovery raised another question:</p>
+          <p className="pr-question">What if our friends&apos; interests could introduce us to things our algorithms would never think to recommend?</p>
+          <p className="pr-became">That question became Shared Discovery.</p>
         </div>
       </section>
 
@@ -81,29 +83,25 @@ export default function SharedDiscoveryCaseStudy() {
 
         <div className="col sd-b-intro">
           <h3 className="sd-h3">One circle. Different discoveries.</h3>
-          <p className="sd-intro">Everyone brings different interests to the circle. Shared Discovery lets those interests influence one another without making everyone's feed identical.</p>
+          <p className="sd-intro">Everyone brings different interests to the circle. Shared Discovery lets those interests influence each other while keeping every feed personal.</p>
         </div>
         <div className="sd-wide sd-figgap"><PersonaCompare /></div>
         <div className="col"><p className="sd-cap sd-b-cap">Switch between Alex, Sam, and Maya, or press Surprise me to explore something unexpected.</p></div>
 
         <div className="sd-end">
-          <header className="end-intro">
-            <h3 className="sd-h3 end-h">Taking it forward.</h3>
-            <p className="end-p">Shared Discovery asks whether our friends' curiosity can make recommendations more worthwhile, while every feed stays personal.</p>
-          </header>
+          <h3 className="sd-h3 end-h">Taking it forward.</h3>
 
           <div className="end-cols">
             <div className="end-left">
               <h4 className="end-sub">What would success look like?</h4>
               <p className="sd-label end-tag">North Star metric · proposed</p>
               <p className="end-north">Worthwhile Novel Discovery Rate</p>
-              <p className="end-lead">Are viewers discovering videos they wouldn't ordinarily encounter, and do they find them valuable?</p>
-              <p className="end-def">The share of sampled explored recommendations viewers call both unfamiliar and worthwhile.</p>
+              <p className="end-def">The share of sampled explored recommendations viewers consider both unfamiliar and worthwhile.</p>
               <ul className="end-metrics">
-                <li><b>Long-term viewer satisfaction</b><span>Is discovery more satisfying over time?</span></li>
-                <li><b>Voluntary return</b><span>Do viewers choose to come back to Shared Discovery?</span></li>
+                <li><b>Long-term viewer satisfaction</b><span>Are viewers more satisfied with discovery over time?</span></li>
+                <li><b>Voluntary return</b><span>Do people choose to return to Shared Discovery?</span></li>
               </ul>
-              <p className="end-guard">Relevance and privacy understanding would remain essential guardrails.</p>
+              <p className="end-guard">Relevance and privacy understanding remain essential.</p>
             </div>
             <div className="end-right">
               <h4 className="end-sub">Where could this go?</h4>
@@ -115,7 +113,8 @@ export default function SharedDiscoveryCaseStudy() {
             </div>
           </div>
 
-          <p className="sd-small end-note">This independent concept uses fictional people and circles, real publicly available video content, and simulated recommendations. It is a design experiment, not a production recommendation system.</p>
+          <p className="end-vision">The next great thing you discover might begin with someone else&apos;s curiosity.</p>
+          <p className="sd-small end-note">This independent concept uses fictional people and circles, real publicly available video content, and simulated recommendations. The metrics are proposed, not measured, and public discovery spaces are a possible later direction, not part of the first product. It is a design experiment, not a production recommendation system.</p>
         </div>
       </section>
 
