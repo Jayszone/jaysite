@@ -4,6 +4,7 @@ import "@fontsource-variable/eb-garamond/wght-italic.css";
 import "@fontsource-variable/inter";
 import "@fontsource/patrick-hand";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ClickTheme from "@/components/ClickTheme";
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main" className="page">{children}</main>
         <ClickTheme />
+        <Analytics />
         <Footer name={site.name} timezone={site.timezone} place={site.place} />
       </body>
     </html>
